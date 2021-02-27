@@ -8,9 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "next": "10.0.7",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "scroll-snap": "^3.2.1"
   },
   "author": "Siddhant Gupta",
   "repository": "https://github.com/mbhutani4/mbhutani4.github.io",
