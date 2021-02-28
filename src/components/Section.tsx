@@ -15,7 +15,6 @@ const Section = styled.section<SectionProps>`
   height: 100%;
   min-width: 100vw;
   min-height: 100vh;
-  padding: 20px;
 
   background: url(${(props) => props.backgroundImage});
   background-repeat: no-repeat;

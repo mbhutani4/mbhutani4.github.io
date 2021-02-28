@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 const Card = styled.a`
-  font-family: sans-serif;
   margin: 1rem;
   flex-basis: 45%;
   padding: 1.5rem;

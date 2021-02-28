@@ -1,23 +1,17 @@
 import { FC, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import { Project } from "helpers/typeDefinitions";
 import Section, { Screen } from "components/Section";
+import CrossFade from "components/CrossFade";
 import color from "styles/color";
 import useOnScreen from "helpers/useOnScreen";
+import { ButtonOutline } from "./Button";
 
-const Background: FC<Project & { image?: string }> = ({ image, name }) =>
-  image ? (
+const Background: FC<Project> = ({ name, images }) =>
+  images.length > 0 ? (
     <>
-      <Image
-        src={image}
-        alt={name}
-        layout="fill"
-        objectFit="cover"
-        loading="lazy"
-        quality="100"
-      />
+      <CrossFade images={images} name={name} />
       <Screen />
     </>
   ) : null;
@@ -54,12 +48,15 @@ const Logo: FC<Project> = ({ logo, name }) =>
 const Heading = styled.h2`
   font-size: 2rem;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: bold;
   letter-spacing: 1px;
   margin: 0;
+  text-shadow: -2px 2px 4px #000;
 `;
 
 const Description = styled.p``;
+
+
 
 const ProjectSlide: FC<{
   project: Project;
@@ -78,13 +75,20 @@ const ProjectSlide: FC<{
 
   return (
     <Section {...{ backgroundColor, textColor }} id={id} ref={ref}>
-      <Background {...project} image={backgroundImage} />
+      <Background {...project} />
       <TextBlock>
         <Logo {...project} />
         <Heading>{name}</Heading>
         {description && <Description>{description}</Description>}
-        <Link href={`/project/${id}`}>Read more</Link>
+        <ButtonOutline
+          onClick={() => {
+            window.location.href = `/project/${id}`;
+          }}
+        >
+          Read more
+        </ButtonOutline>        
       </TextBlock>
+      
     </Section>
   );
 };
