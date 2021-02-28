@@ -13,13 +13,19 @@ const Container = styled.nav`
   right: 0px;
   top: 50%;
   transform: translateY(-50%);
-
+  z-index: 9;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  width: max-content;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const Control = styled.button`
+  width: 100%;
   padding: 12px 20px;
   margin: 0;
   background: none;
@@ -28,8 +34,10 @@ const Control = styled.button`
   color: white;
   font-size: 1rem;
   cursor: pointer;
+  text-align: right;
 
   &.active {
+    padding-right: 18px;
     font-weight: bold;
     border-width: 4px;
   }

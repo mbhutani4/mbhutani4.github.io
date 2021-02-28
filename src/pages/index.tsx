@@ -35,6 +35,11 @@ const Home = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
         <link rel="icon" href="/favicon.icon" />
       </Head>
       <Header isVisible={showSlideControls} />
+      <SliderControl
+        projects={projects}
+        isVisible={showSlideControls}
+        currentSlideId={currentSlideId}
+      />
       <Slides ref={ref}>
         <StartSlide
           key={defaultSlideId}
@@ -49,11 +54,6 @@ const Home = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
           />
         ))}
       </Slides>
-      <SliderControl
-        projects={projects}
-        isVisible={showSlideControls}
-        currentSlideId={currentSlideId}
-      />
     </>
   );
 };

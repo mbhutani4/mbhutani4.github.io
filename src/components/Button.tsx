@@ -16,8 +16,11 @@ export const ButtonOutline = styled(Button)`
   background: none;
   color: white;
 
-  &:hover,
   &:focus {
+    background: #fff4;
+  }
+
+  &:hover {
     background: white;
     color: black;
   }

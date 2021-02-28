@@ -17,7 +17,7 @@ const Container = styled.aside`
 const Heading = styled.h1`
   font-size: 2rem;
   margin: 0;
-  text-shadow: -2px -2px 4px #fff, 2px 2px 8px #ccc;
+  text-shadow: -2px -2px 4px #fff, 2px 2px 2px #fff4;
 
   margin-bottom: -10px;
 `;
@@ -27,7 +27,7 @@ const SubHeading = styled.span`
   font-weight: bold;
   text-transform: uppercase;
   opacity: 0.8;
-  text-shadow: -1px -1px 2px #fff;
+  text-shadow: -1px -1px 2px #fff, 1px 1px 1px #fff4;
 `;
 
 const Logo: FC = () => {

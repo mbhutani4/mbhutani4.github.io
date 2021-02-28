@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import { Project } from "helpers/typeDefinitions";
@@ -56,8 +56,6 @@ const Heading = styled.h2`
 
 const Description = styled.p``;
 
-
-
 const ProjectSlide: FC<{
   project: Project;
   changeSlideId: (id: string) => void;
@@ -68,9 +66,13 @@ const ProjectSlide: FC<{
   const textColor = backgroundImage ? color.text.inverse : color.text.primary;
 
   const { isIntersecting, ref } = useOnScreen();
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (isIntersecting) changeSlideId(id);
+    if (isIntersecting) {
+      changeSlideId(id);
+      buttonRef.current?.focus();
+    }
   }, [isIntersecting]);
 
   return (
@@ -81,14 +83,14 @@ const ProjectSlide: FC<{
         <Heading>{name}</Heading>
         {description && <Description>{description}</Description>}
         <ButtonOutline
+          ref={buttonRef}
           onClick={() => {
             window.location.href = `/project/${id}`;
           }}
         >
           Read more
-        </ButtonOutline>        
+        </ButtonOutline>
       </TextBlock>
-      
     </Section>
   );
 };
