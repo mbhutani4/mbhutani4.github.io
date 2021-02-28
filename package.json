@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o docs/",
+    "build": "next build && next export -o build/",
     "start": "next start"
   },
   "dependencies": {
@@ -13,7 +13,6 @@
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-responsive-carousel": "^3.2.12",
     "scroll-snap": "^3.2.1"
   },
   "author": "Siddhant Gupta",

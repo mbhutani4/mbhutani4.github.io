@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import color from "styles/color";
 
-interface SectionProps {
+interface SlideProps {
   backgroundImage?: string;
   backgroundColor?: string;
   textColor?: string;
 }
 
-const Section = styled.section<SectionProps>`
+const Slide = styled.section<SlideProps>`
   position: relative;
   display: flex;
 
@@ -23,17 +23,4 @@ const Section = styled.section<SectionProps>`
   color: ${(props) => props.textColor || color.black};
 `;
 
-export const Screen = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    to top,
-    ${color.black50} 5%,
-    ${color.transparent}
-  );
-`;
-
-export default Section;
+export default Slide;

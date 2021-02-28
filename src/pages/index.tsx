@@ -1,14 +1,17 @@
-import fs from "fs";
 import { useState } from "react";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import StartSlide from "components/StartSlide";
-import ProjectSlide from "components/ProjectSlide";
-import Slides from "components/Slides";
+
+import StartSlide from "components/Slider/StartSlide";
+import ProjectSlide from "components/Slider/ProjectSlide";
+import Slides from "components/Slider/Slides";
+import SliderControl from "components/Slider/SliderControl";
+import Header from "components/Header/Header";
+
 import useScrollSnap from "helpers/useScrollSnap";
 import type { Project } from "helpers/typeDefinitions";
-import Header from "components/Header";
-import SliderControl from "components/SliderControl";
+import { getProjects } from "helpers/fetchProjects";
+
 
 const defaultSlideId = "start";
 
@@ -43,8 +46,8 @@ const Home = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Slides ref={ref}>
         <StartSlide
           key={defaultSlideId}
-          project={{ id: defaultSlideId, name: "Mahima Bhutani", images: [] }}
           changeSlideId={changeSlideId}
+          firstProjectSlideId={projects[0]?.id}
         />
         {projects.map((project) => (
           <ProjectSlide
@@ -61,10 +64,7 @@ const Home = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
 export const getStaticProps: GetStaticProps<{
   projects: Project[];
 }> = async () => {
-  const projects: Project[] = fs
-    .readdirSync(process.cwd() + "/projects")
-    .map((file) => require("../../projects/" + file).default)
-    .sort(({ order: a = 0 }: Project, { order: b = 0 }: Project) => b - a);
+  const projects = getProjects();
   return {
     props: {
       projects,
