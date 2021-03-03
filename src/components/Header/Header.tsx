@@ -7,11 +7,11 @@ import color from "styles/color";
 
 interface HeaderProps {
   isVisible: boolean;
-  showBackButton?: boolean;
+  showBackButton?: boolean | string;
 }
 
-const Container = styled.aside`
-  position: fixed;
+const Container = styled.aside<{ position: "fixed" | "absolute" }>`
+  position: ${(p) => p.position};
   z-index: 10;
   top: 40px;
   left: 40px;
@@ -65,14 +65,18 @@ const Logo: FC<{ light?: boolean }> = ({ light }) => {
 
 const Header: FC<HeaderProps> = ({ isVisible, showBackButton }) => {
   const router = useRouter();
+  const handleBack = () =>
+    typeof showBackButton === "string"
+      ? router.push(showBackButton)
+      : router.back();
   return isVisible ? (
-    <Container>
+    <Container position={showBackButton ? "absolute" : "fixed"}>
       {showBackButton && (
-        <IconButton onClick={router.back} title={"Back"}>
+        <IconButton onClick={handleBack} title={"Back"}>
           <IconDown />
         </IconButton>
       )}
-      <Logo light={showBackButton} />
+      <Logo light={!!showBackButton} />
     </Container>
   ) : null;
 };

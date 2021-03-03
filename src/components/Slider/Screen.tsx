@@ -15,16 +15,3 @@ export const Screen = styled.div`
 `;
 
 export default Screen;
-
-export const Screen2 = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    to bottom,
-    ${color.black50} 50%,
-    ${color.white} 100%
-  );
-`;

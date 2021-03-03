@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { Project } from "helpers/typeDefinitions";
 import Slide from "components/Slider/Slide";
-import { Screen2 } from "components/Slider/Screen";
 import styled from "@emotion/styled";
 import Header from "components/Header/Header";
+import color from "styles/color";
 
 const TextBlock = styled.div`
   position: absolute;
@@ -35,16 +35,32 @@ const SubHeading = styled.h2`
   opacity: 0.7;
 `;
 
+
+const Screen = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.75;
+  background: linear-gradient(
+    to bottom,
+    var(--accent, ${color.black50}) 50%,
+    ${color.white} 100%
+  );
+`;
+
+
 const Hero: FC<{ project: Project }> = ({ project }) => {
-  const { name, images, description } = project;
+  const { name, images, description, id } = project;
   return (
     <Slide
       backgroundImage={images[0]}
       backgroundColor="black"
       style={{ height: "75vh", minHeight: "auto" }}
     >
-      <Header isVisible showBackButton />
-      <Screen2 />
+      <Header isVisible showBackButton={"/#" + id} />
+      <Screen />
       <TextBlock>
         <Heading>{name}</Heading>
         <SubHeading></SubHeading>

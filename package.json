@@ -10,9 +10,13 @@
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "gray-matter": "^4.0.2",
     "next": "10.0.7",
+    "raw-loader": "^4.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-markdown": "^5.0.3",
+    "remark-gfm": "^1.0.0",
     "scroll-snap": "^3.2.1"
   },
   "author": "Siddhant Gupta",

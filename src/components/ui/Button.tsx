@@ -19,6 +19,9 @@ export const IconButton = styled(Button)`
   padding: 4px;
   height: 40px;
   width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ButtonOutline = styled(Button)`

@@ -5,4 +5,5 @@ export interface Project {
   images: string[];
   description?: string;
   logo?: string;
+  accent?: string;
 }
