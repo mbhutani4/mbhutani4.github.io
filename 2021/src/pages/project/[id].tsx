@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import Head from "next/head";
 
 import Hero from "components/Project/Hero";
 import Markdown from "components/Project/Markdown";
@@ -14,6 +15,10 @@ const ProjectPage = ({
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element => {
   return (
     <main style={{ "--accent": project.accent } as CSSProperties}>
+      <Head>
+        <title>Mahima Bhutani - ${project.name}</title>
+        <link rel="icon" href="/favicon.icon" />
+      </Head>
       <Hero project={project} />
       <Markdown markdown={markdown} project={project} />
       <Footer />

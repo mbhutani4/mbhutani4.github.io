@@ -19,12 +19,12 @@ A Portal for helping people manage their work, view their upcoming tasks, track 
 
 ### SOP
 
-![SOP](/projects/scania/ipad_sop.jpg)
+![SOP](/projects/scania/Ipad_sop.jpg)
 
 ### Details
 
-![Details](/projects/scania/ipad_sop_details.jpg)
+![Details](/projects/scania/Ipad_sop_details.jpg)
 
 ### Documentation
 
-![Doc](/projects/scania/ipad_documentation.jpg)
+![Doc](/projects/scania/Ipad_documentation.jpg)
