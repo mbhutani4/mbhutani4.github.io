@@ -1,22 +1,27 @@
 import { FC, useEffect } from "react";
-import Image from "next/image";
 import styled from "@emotion/styled";
 import { Project } from "helpers/typeDefinitions";
 import Section from "components/Slider/Slide";
 import Screen from "components/Slider/Screen";
-import CrossFade from "components/ui/CrossFade";
 import color from "styles/color";
 import useOnScreen from "helpers/useOnScreen";
 import { ButtonOutline } from "../ui/Button";
 
-const Background: FC<Project> = ({ name, images }) =>
-  images.length > 0 ? (
-    <>
-      <CrossFade images={images} name={name} />
-      <Screen />
-    </>
-  ) : null;
-
+const Background: FC<Project> = ({ name, image }) => (
+  <>
+    <img
+      className="top"
+      src={image}
+      alt={name}
+      style={{
+        objectFit: "cover",
+        width: "100%",
+        height: "100%",
+      }}
+    />
+    <Screen />
+  </>
+);
 const TextBlock = styled.div`
   position: absolute;
   bottom: 40px;
@@ -34,15 +39,15 @@ const TextBlock = styled.div`
 
 const Logo: FC<Project> = ({ logo, name }) =>
   logo ? (
-    <Image
+    <img
       src={logo}
       alt={name}
-      height="60px"
-      width="60px"
-      objectFit="contain"
-      layout="fixed"
-      loading="lazy"
-      objectPosition="left center"
+      style={{
+        height: "60px",
+        width: "60px",
+        objectFit: "contain",
+        objectPosition: "left center",
+      }}
     />
   ) : null;
 
@@ -61,12 +66,13 @@ const ProjectSlide: FC<{
   project: Project;
   changeSlideId: (id: string) => void;
 }> = ({ project, changeSlideId }) => {
-  const { id, name, images, description } = project;
-  const backgroundImage = typeof images === "string" ? images : images?.[0];
+  const { id, name, image, description } = project;
+  const backgroundImage = image;
   const backgroundColor = backgroundImage ? "inherit" : color.white;
   const textColor = backgroundImage ? color.text.inverse : color.text.primary;
 
   const { isIntersecting, ref } = useOnScreen();
+  console.log(project.id);
 
   useEffect(() => {
     if (isIntersecting) {

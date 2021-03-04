@@ -12,7 +12,6 @@ import useScrollSnap from "helpers/useScrollSnap";
 import type { Project } from "helpers/typeDefinitions";
 import { getProjects } from "helpers/fetchProjects";
 
-
 const defaultSlideId = "start";
 
 function removeHash() {
@@ -30,7 +29,7 @@ const Home = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
     setSlideId(id);
     removeHash();
   };
-  const showSlideControls = currentSlideId !== defaultSlideId;
+  const showSlideControls = currentSlideId !== defaultSlideId;  
   return (
     <>
       <Head>
@@ -56,7 +55,7 @@ const Home = ({ projects }: InferGetStaticPropsType<typeof getStaticProps>) => {
             changeSlideId={changeSlideId}
           />
         ))}
-      </Slides>
+      </Slides>      
     </>
   );
 };

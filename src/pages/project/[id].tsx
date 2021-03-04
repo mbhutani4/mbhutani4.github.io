@@ -6,6 +6,7 @@ import Markdown from "components/Project/Markdown";
 
 import { getMDFile, getProjects } from "helpers/fetchProjects";
 import type { Project } from "helpers/typeDefinitions";
+import Footer from "components/Header/Footer";
 
 const ProjectPage = ({
   project,
@@ -15,6 +16,7 @@ const ProjectPage = ({
     <main style={{ "--accent": project.accent } as CSSProperties}>
       <Hero project={project} />
       <Markdown markdown={markdown} project={project} />
+      <Footer />
     </main>
   );
 };

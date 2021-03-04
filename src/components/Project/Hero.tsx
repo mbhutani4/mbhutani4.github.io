@@ -52,10 +52,10 @@ const Screen = styled.div`
 
 
 const Hero: FC<{ project: Project }> = ({ project }) => {
-  const { name, images, description, id } = project;
+  const { name, image, description, id } = project;
   return (
     <Slide
-      backgroundImage={images[0]}
+      backgroundImage={image}
       backgroundColor="black"
       style={{ height: "75vh", minHeight: "auto" }}
     >

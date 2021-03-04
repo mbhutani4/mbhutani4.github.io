@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import styled from "@emotion/styled";
