@@ -1,7 +1,7 @@
 ---
-id: fundmanagment
-name: Fund managment
-image: /projects/fundmanagment/hero.jpg
+id: fundmanagement
+name: Fund management
+image: /projects/fundmanagement/hero.jpg
 description: A application which allow Fund mangers to manage their funds, portfolios and tasks.
 accent: 
 order: 10
@@ -11,4 +11,4 @@ order: 10
 
 A application which allow Fund mangers to manage their funds, portfolios and tasks.
 
-![Image](/projects/fundmanagment/hero.jpg)
+![Image](/projects/fundmanagement/hero.jpg)
