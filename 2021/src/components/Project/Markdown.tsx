@@ -66,6 +66,10 @@ const Container = styled.section`
       padding: 2px 4px;
     }
   }
+
+  h2 {
+    margin-top: 2em;
+  }
 `;
 
 const Markdown: FC<{ markdown: string; project: Project }> = ({ markdown }) => (

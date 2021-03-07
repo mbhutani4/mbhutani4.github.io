@@ -16,7 +16,7 @@ const ProjectPage = ({
   return (
     <main style={{ "--accent": project.accent } as CSSProperties}>
       <Head>
-        <title>Mahima Bhutani - ${project.name}</title>
+        <title>Mahima Bhutani - {project.name}</title>
         <link rel="icon" href="/favicon.icon" />
       </Head>
       <Hero project={project} />
