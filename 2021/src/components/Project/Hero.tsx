@@ -45,8 +45,8 @@ const Screen = styled.div`
   opacity: 0.75;
   background: linear-gradient(
     to bottom,
-    var(--accent, ${color.black50}) 50%,
-    ${color.white} 100%
+    ${color.black50} 50%,
+    rgba(0,0,0, 0.25) 100%
   );
 `;
 
