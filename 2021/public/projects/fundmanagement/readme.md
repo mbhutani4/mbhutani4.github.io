@@ -48,8 +48,6 @@ Creating information flow and structuring  data was of utmost importance as the 
 ### Web Application
 The final designed application is available both in light and dark mode. Screenshot of the final application
 
-![Image](/projects/fundmanagement/fm_home_light.png)
-![Image](/projects/fundmanagement/fm_nav_light.png)
 ![Image](/projects/fundmanagement/fm_details_light.png)
 ![Image](/projects/fundmanagement/fm_summary_light.png)
 ![Image](/projects/fundmanagement/fm_warnings_light.png)
@@ -61,7 +59,6 @@ The face-to-face testing with users was not possible due to Covid-19 pandemic. T
 
 __PS: We have dark mode too.__
 
-![Image](/projects/fundmanagement/fm_nav_dark.png)
 ![Image](/projects/fundmanagement/fm_details_dark.png)
 ![Image](/projects/fundmanagement/fm_summary_dark.png)
 ![Image](/projects/fundmanagement/fm_warnings_dark.png)
