@@ -62,8 +62,6 @@ const Logo: FC<{ light?: boolean }> = ({ light }) => {
 };
 
 const Header: FC<HeaderProps> = ({ isVisible }) => {
-  const router = useRouter();
-  const handleBack = () => router.back();
   return isVisible ? (
     <Container position={"absolute"}>
       <Logo light={true} />
