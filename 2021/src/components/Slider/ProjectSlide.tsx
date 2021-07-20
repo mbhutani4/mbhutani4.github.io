@@ -1,57 +1,31 @@
-import { FC, useEffect } from "react";
+import type { FC } from "react";
 import styled from "@emotion/styled";
 import { Project } from "helpers/typeDefinitions";
 import Section from "components/Slider/Slide";
-import Screen from "components/Slider/Screen";
 import color from "styles/color";
-import useOnScreen from "helpers/useOnScreen";
-import { ButtonOutline } from "../ui/Button";
 
-const Background: FC<Project> = ({ name, image }) => (
-  <>
-    <img
-      className="top"
-      src={image}
-      alt={name}
-      style={{
-        objectFit: "cover",
-        width: "100%",
-        height: "100%",
-      }}
-    />
-    <Screen />
-  </>
-);
-const TextBlock = styled.div`
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  right: 40px;
-  height: auto;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-width: 400px;
-
-  a {
-    font-weight: bold;
-  }
+const Slide = styled(Section)`
+  width: 100%;
+  min-width: 500px;
+  min-height: unset;
+  cursor: pointer;
 `;
 
-const Logo: FC<Project> = ({ logo, name }) =>
-  logo ? (
-    <img
-      src={logo}
-      alt={name}
-      style={{
-        height: "60px",
-        width: "60px",
-        objectFit: "contain",
-        objectPosition: "left center",
-      }}
-    />
-  ) : null;
+const Background: FC<Project> = ({ name, image }) => (
+  <img
+    className="top"
+    src={image}
+    alt={name}
+    style={{
+      objectFit: "cover",
+      width: "100%",
+      height: "100%",
+    }}
+  />
+);
 
 const Heading = styled.h2`
+  display: none;
   font-size: 2rem;
   text-transform: uppercase;
   font-weight: bold;
@@ -60,42 +34,51 @@ const Heading = styled.h2`
   text-shadow: -2px 2px 4px #000;
 `;
 
-const Description = styled.p``;
+const TextBlock = styled.div<{ accent?: string }>`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-const ProjectSlide: FC<{
-  project: Project;
-  changeSlideId: (id: string) => void;
-}> = ({ project, changeSlideId }) => {
-  const { id, name, image, description } = project;
+  :hover {
+    background-color: ${(props) =>
+      props.accent ? `${props.accent}80` : color.black50};
+
+    h2 {
+      display: block;
+    }
+  }
+
+  a {
+    font-weight: bold;
+  }
+`;
+
+const ProjectSlide: FC<Project> = (project) => {
+  const { id, name, image, accent } = project;
   const backgroundImage = image;
   const backgroundColor = backgroundImage ? "inherit" : color.white;
   const textColor = backgroundImage ? color.text.inverse : color.text.primary;
 
-  const { isIntersecting, ref } = useOnScreen();
-  console.log(project.id);
-
-  useEffect(() => {
-    if (isIntersecting) {
-      changeSlideId(id);
-    }
-  }, [isIntersecting]);
-
   return (
-    <Section {...{ backgroundColor, textColor }} id={id} ref={ref}>
+    <Slide
+      {...{ backgroundColor, textColor }}
+      id={id}
+      onClick={() => {
+        window.location.href = `/project/${id}`;
+      }}
+    >
       <Background {...project} />
-      <TextBlock>
-        <Logo {...project} />
+      <TextBlock accent={accent}>
         <Heading>{name}</Heading>
-        {description && <Description>{description}</Description>}
-        <ButtonOutline
-          onClick={() => {
-            window.location.href = `/project/${id}`;
-          }}
-        >
-          Read more
-        </ButtonOutline>
       </TextBlock>
-    </Section>
+    </Slide>
   );
 };
 

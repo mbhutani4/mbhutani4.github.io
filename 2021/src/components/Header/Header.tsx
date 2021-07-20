@@ -1,8 +1,6 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { IconButton } from "components/ui/Button";
-import IconDown from "icons/Down";
 import color from "styles/color";
 
 interface HeaderProps {
@@ -63,20 +61,12 @@ const Logo: FC<{ light?: boolean }> = ({ light }) => {
   );
 };
 
-const Header: FC<HeaderProps> = ({ isVisible, showBackButton }) => {
+const Header: FC<HeaderProps> = ({ isVisible }) => {
   const router = useRouter();
-  const handleBack = () =>
-    typeof showBackButton === "string"
-      ? router.push(showBackButton)
-      : router.back();
+  const handleBack = () => router.back();
   return isVisible ? (
-    <Container position={showBackButton ? "absolute" : "fixed"}>
-      {showBackButton && (
-        <IconButton onClick={handleBack} title={"Back"}>
-          <IconDown />
-        </IconButton>
-      )}
-      <Logo light={!!showBackButton} />
+    <Container position={"absolute"}>
+      <Logo light={true} />
     </Container>
   ) : null;
 };

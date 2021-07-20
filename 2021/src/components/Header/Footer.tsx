@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
-// import color from "styles/color";
+import { IconButton } from "components/ui/Button";
+import IconDown from "icons/Down";
 
 const Container = styled.aside`
   padding: 20px;
@@ -14,8 +15,28 @@ const Footer: FC = () => {
   return (
     <Container>
       © Mahima Bhutani / <a href="mailto:mahima@bhutani.design">Contact</a>
+      <ScrollToTop
+        onClick={() => {
+          window.scrollTo({ top: 0 });
+        }}
+        title={"Scroll to top"}
+      >
+        <IconDown />
+      </ScrollToTop>
     </Container>
   );
 };
 
 export default Footer;
+
+const ScrollToTop = styled(IconButton)`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: auto;
+  height: auto;
+
+  svg {
+    transform: rotate(180deg);
+  }
+`;

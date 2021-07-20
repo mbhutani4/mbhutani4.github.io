@@ -3,7 +3,8 @@ id: teachingApp
 name: Teaching app
 image: /projects/teachingApp/teaching_app.jpg
 description: A mobile application which support students to look for teachers having expertise in their domains.
-order: 0
+accent: "#000080"
+order: 1
 ---
 
 # Teaching App

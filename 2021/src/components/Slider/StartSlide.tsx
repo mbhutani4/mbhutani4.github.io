@@ -1,7 +1,6 @@
-import { FC, useEffect } from "react";
+import type { FC } from "react";
 import styled from "@emotion/styled";
 
-import useOnScreen from "helpers/useOnScreen";
 import Slide from "components/Slider/Slide";
 import color from "styles/color";
 import { Button, IconButton } from "components/ui/Button";
@@ -60,10 +59,7 @@ const ProjectLink = styled.div`
   }
 `;
 
-const Start: FC<{
-  firstProjectSlideId?: string;
-  changeSlideId: (id: string) => void;
-}> = ({ changeSlideId, firstProjectSlideId }) => {
+const Start: FC = () => {
   const id = "start";
   const backgroundImage = "/images/start.jpg";
   const backgroundColor = color.white;
@@ -71,25 +67,17 @@ const Start: FC<{
   const title = "Mahima Bhutani";
   const subtitle = "UI/UX Designer";
 
-  const { isIntersecting, ref } = useOnScreen();
-
-  useEffect(() => {
-    if (isIntersecting) changeSlideId(id);
-  }, [isIntersecting]);
-
   return (
     <Slide
       {...{ backgroundColor, textColor, backgroundImage }}
       id={id}
-      ref={ref}
+      style={{ zIndex: 100 }}
     >
       <TextBlock>
         <Heading>{title}</Heading>
         <SubHeading>{subtitle}</SubHeading>
         <Links>
-          <Button
-            onClick={() => openExternalLink("#" + firstProjectSlideId, "_self")}
-          >
+          <Button onClick={() => openExternalLink("#projects", "_self")}>
             Projects
           </Button>
           <IconButton
@@ -115,7 +103,7 @@ const Start: FC<{
       </TextBlock>
       <ProjectLink
         title="Projects"
-        onClick={() => openExternalLink("#" + firstProjectSlideId, "_self")}
+        onClick={() => openExternalLink("#projects", "_self")}
       >
         <IconDown />
       </ProjectLink>

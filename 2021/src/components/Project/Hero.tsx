@@ -35,7 +35,6 @@ const SubHeading = styled.h2`
   opacity: 0.7;
 `;
 
-
 const Screen = styled.div`
   position: absolute;
   top: 0;
@@ -46,20 +45,19 @@ const Screen = styled.div`
   background: linear-gradient(
     to bottom,
     ${color.black50} 50%,
-    rgba(0,0,0, 0.25) 100%
+    rgba(0, 0, 0, 0.25) 100%
   );
 `;
 
-
 const Hero: FC<{ project: Project }> = ({ project }) => {
-  const { name, image, description, id } = project;
+  const { name, image, description } = project;
   return (
     <Slide
       backgroundImage={image}
       backgroundColor="black"
       style={{ height: "75vh", minHeight: "auto" }}
     >
-      <Header isVisible showBackButton={"/#" + id} />
+      <Header isVisible />
       <Screen />
       <TextBlock>
         <Heading>{name}</Heading>

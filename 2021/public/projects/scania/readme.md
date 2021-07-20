@@ -4,7 +4,7 @@ name: Scania Logistics Portal
 image: /projects/scania/scania_Logistic_Company.jpg
 description: A Portal for helping people manage their work, view their upcoming tasks, track deliveries and their work and explore history of work done any time in past.
 accent: "#000080"
-order: 2
+order: 3
 ---
 
 # Scania Logistics Portal

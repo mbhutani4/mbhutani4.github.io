@@ -41,7 +41,7 @@ Multiple names were pitched in by the team members like Hund(dog in swedish), Pa
 
 ## Business Structure
 
-It was important to know about the problem and solution from business perspective as well. The business model canvas was designed to check the different stakeholders involved in the process along with the risks and challenges that the project might face from business point of view.  The support provided by the veterinarian, trainers and users at different ends helped me identify the risks, structure, system and their expectation based on which the business model was crafted for reference.
+It was important to know about the problem and solution from business perspective as well. The business model canvas was designed to check the different stakeholders involved in the process along with the risks and challenges that the project might face from business point of view. The support provided by the veterinarian, trainers and users at different ends helped me identify the risks, structure, system and their expectation based on which the business model was crafted for reference.
 
 ![BMC](/projects/compawnion/compawnion_BMC.png)
 

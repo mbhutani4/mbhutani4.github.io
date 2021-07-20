@@ -9,8 +9,8 @@ export const Screen = styled.div`
   left: 0;
   background: linear-gradient(
     to top,
-    ${color.black50} 5%,
-    ${color.transparent}
+    ${color.black50} 0%,
+    ${color.transparent} 25%
   );
 `;
 
