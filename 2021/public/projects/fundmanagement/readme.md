@@ -7,7 +7,7 @@ accent:
 order: 4
 ---
 
-# Fund managment
+# Fund management
 
 ## MY ROLE
 
@@ -19,13 +19,13 @@ Understanding the complexities of the process while providing a design solution 
 
 ### Data Insights
 
-Currently the fund managers use an extension provided by the company to manage and work with funds and portfolios. The available features have 'overgrown' from what an extension should be and the technology limits what can and should be available in Fund Management process. I was tasked to design an application to provide users with clean interface to perform all their tasks as well as an interface which can accomodate never ending feature updates.
+Currently the fund managers use an extension provided by the company to manage and work with funds and portfolios. The available features have 'overgrown' from what an extension should be and the technology limits what can and should be available in Fund Management process. I was tasked to design an application to provide users with clean interface to perform all their tasks as well as an interface which can accommodate never ending feature updates.
 
 ### Lean UX approach
 
 Product design and development followed each other in quick succession. Once the components of the application were designed and approved, the development team began implementation.  
-I conducted various workshops and testing with the multiple domain experts. The feedack and results were analysed and used for redesigning the existing functionalities of the process. Simultaneously, I designed the next features in the pipeline while working with development team to implement the current features.
-The design and testing was incoporated into the development process. The milestones were set quaterly based on the development ccycle and the remianing time was used for designing.
+I conducted various workshops and testing with the multiple domain experts. The feedback and results were analysed and used for redesigning the existing functionalities of the process. Simultaneously, I designed the next features in the pipeline while working with development team to implement the current features.
+The design and testing was incorporated into the development process. The milestones were set quarterly based on the development cycle and the remaining time was used for designing.
 
 ## USER RESEARCH
 
@@ -33,7 +33,7 @@ The process for managing and working with funds already existed. I conducted use
 
 ### Semi-Structured Interviews
 
-Remote and face-to-face interviews were conducted with users with different expertise to know about the issues and problems encountered while using the existing process. The interviews were semi-structured with basic questions about the daily usage and thier overall experience while working. I also analysed the existing process to experience the usability and design issues.
+Remote and face-to-face interviews were conducted with users with different expertise to know about the issues and problems encountered while using the existing process. The interviews were semi-structured with basic questions about the daily usage and their overall experience while working. I also analysed the existing process to experience the usability and design issues.
 
 ## THE APPLICATION
 
@@ -56,8 +56,7 @@ The final designed application is available both in light and dark mode. Screens
 ![Image](/projects/fundmanagement/fm_warnings_light.png)
 
 ## Testing with the Users
-
-The face-to-face testing with users was not possible due to Covid-19 pandemic. The testing was conducted over video meetings where users were given few tasks to perform and had to think out loud. The tasks were based on users daily usage and they were followed by semi-structured interviews. Since the users had their first interaction with the application, their experience and feedback actes as a base for learning more about the learning curve. New features were designed based on the feedback gathered from user feedback and experience evaluation.
+The face-to-face testing with users was not possible due to Covid-19 pandemic. The testing was conducted over video meetings where users were given few tasks to perform and had to think out loud. The tasks were based on users daily usage and they were followed by semi-structured interviews. Since the users had their first interaction with the application, their experience and feedback acts as a base for learning more about the learning curve. New features were designed based on the feedback gathered from user feedback and experience evaluation.
 
 ---
 
