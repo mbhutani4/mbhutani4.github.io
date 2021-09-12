@@ -17,7 +17,7 @@ A Mobile based platform through which the dog lovers who unfortunately can’t a
 
 ## My Role
 
-I designed the mobile based platform along with a website which was used by customers for registeration for the services by paying a minimal subscription fee. The designs were user friendly and attractive. The prototype was designed for user testing. On the business front, the business model canvas was designed for the investors to understand the services.
+I designed the mobile based platform along with a website which was used by customers for registration for the services by paying a minimal subscription fee. The designs were user friendly and attractive. The prototype was designed for user testing. On the business front, the business model canvas was designed for the investors to understand the services.
 
 ## The Challenge
 

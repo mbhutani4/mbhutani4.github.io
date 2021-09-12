@@ -37,7 +37,7 @@ Paper prototype helped in demonstrating the behaviour of interface early in the 
 
 ## Initial Prototype
 
-This was the simulation or sample version of the final productand was used for testing before the release of final product. The interactive prototype opened lot of possiblities for both the users and testers as the users could experience the working of the application with the help of some realistic interactive prototypes.
+This was the simulation or sample version of the final product and was used for testing before the release of final product. The interactive prototype opened lot of possibilities for both the users and testers as the users could experience the working of the application with the help of some realistic interactive prototypes.
 
 ![Initial prototyping](/projects/delta/delta_initialprototype.jpg)
 

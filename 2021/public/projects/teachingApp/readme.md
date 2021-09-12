@@ -67,6 +67,6 @@ A sample version was designed and tested before releasing high fidelity prototyp
 
 ## Final Prototype
 
-This was the final design and a Native app was build using Androis Studio for development. Later the app was tested with both teachers and students for further feedback.
+This was the final design and a Native app was build using Android Studio for development. Later the app was tested with both teachers and students for further feedback.
 
 ![Final Prototype](/projects/teachingApp/teachingapp_final_design.jpg)
