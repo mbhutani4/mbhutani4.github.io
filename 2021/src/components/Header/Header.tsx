@@ -55,7 +55,7 @@ const Logo: FC<{ light?: boolean }> = ({ light }) => {
         Mahima Bhutani
       </Heading>
       <SubHeading style={light ? { textShadow: "unset" } : {}}>
-        UI/UX Designer
+        UX/UI Designer
       </SubHeading>
     </div>
   );

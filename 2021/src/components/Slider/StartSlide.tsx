@@ -65,7 +65,7 @@ const Start: FC = () => {
   const backgroundColor = color.white;
   const textColor = color.text.primary;
   const title = "Mahima Bhutani";
-  const subtitle = "UI/UX Designer";
+  const subtitle = "UX/UI Designer";
 
   return (
     <Slide
@@ -81,7 +81,7 @@ const Start: FC = () => {
             Projects
           </Button>
           <IconButton
-            onClick={() => openExternalLink("/MahimaBhutani_Resume.pdf")}
+            onClick={() => openExternalLink("/MahimaBhutani_UX_Designer_Resume.pdf")}
           >
             <IconResume />
           </IconButton>

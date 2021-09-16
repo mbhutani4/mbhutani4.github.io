@@ -9,6 +9,13 @@ order: 3
 
 # Scania Logistics Portal
 
+## The Challenge
+
+## My Role
+
+## The Approach
+
+
 ## The Application
 
 A Portal for helping people manage their work, view their upcoming tasks, track deliveries and their work and explore history of work done any time in past. This project was done for Master Thesis. Hence, the further details and process will be published later.
