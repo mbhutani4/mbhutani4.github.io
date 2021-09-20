@@ -81,7 +81,7 @@ const Start: FC = () => {
             Projects
           </Button>
           <IconButton
-            onClick={() => openExternalLink("/MahimaBhutani_UX_Designer_Resume.pdf")}
+            onClick={() => openExternalLink("/MahimaBhutani_UXDesigner_Resume.pdf")}
           >
             <IconResume />
           </IconButton>
