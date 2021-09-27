@@ -52,9 +52,16 @@ To build harmonious applications across the company, the product team maintains 
 
 <!-- Put an image here. -->
 
-To read more about the the design system "Harmony", [Read more](/project/harmony).
+To read more about the the design system ["Harmony"](/project/harmony).
 
-### Final design
+### Low-fidelity - Paper prototype
+
+During the brainstorming sessions, paper prototypes were designed to gather early and honest feedback from the users. These paper sketches acted as a foundation in outlining the steps of the user flow or explore and validate a variety of layouts.
+
+![Image](/projects/fundmanagement/FA_FUND-low_fidelity-1.png)
+![Image](/projects/fundmanagement/FA_FUND-low_fidelity-2.png)
+
+### High-fidelity - Figma design
 
 The final designed application is available both in light and dark mode. Screenshot of the final application
 
