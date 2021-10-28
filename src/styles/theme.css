@@ -1,0 +1,73 @@
+/* https://accessiblepalette.com/?lightness=98,90,80,70,60,50,40,30,20,2&fe6f5c=0,0&f8d147=0,-10&56d25b=0,0&0088cb=0,0&397ae5=1,15&AA00FF=0,0&69788f=0,0 */
+
+/* COLORS */
+
+:root {
+  --white: #ffffff;
+  --grey-050: #f9f9fa;
+  --grey-100: #dfe3e7;
+  --grey-200: #c1c7d0;
+  --grey-300: #a3acba;
+  --grey-400: #8592a4;
+  --grey-500: #69788f;
+  --grey-600: #535f71;
+  --grey-700: #3e4755;
+  --grey-800: #2b313a;
+  --grey-900: #060709;
+  --black: #000000;
+}
+
+/* Light theme */
+:root {
+  --color-accent: #cd4e00;
+  --color-text-primary: var(--grey-800);
+  --color-text-secondary: var(--grey-700);
+  --color-text-disabled: var(--grey-500);
+  --color-text-inverse: var(--grey-100);
+  --color-background-primary: var(--white);
+  --color-background-secondary: var(--grey-100);
+  --color-background-disabled: var(--grey-200);
+  --color-background-inverse: var(--grey-700);
+  --color-border: var(--grey-500);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-accent: #e3702a;
+    --color-text-primary: var(--grey-050);
+    --color-text-secondary: var(--grey-100);
+    --color-text-disabled: var(--grey-200);
+    --color-text-inverse: var(--grey-800);
+    --color-background-primary: var(--grey-800);
+    --color-background-secondary: var(--grey-900);
+    --color-background-disabled: var(--grey-600);
+    --color-background-inverse: var(--grey-100);
+    --color-border: var(--grey-500);
+  }
+}
+
+/* TYPOGRAPHY */
+
+:root {
+  --font-size: 16px;
+  --font-family: "Poppins";
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  :root {
+    --font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  :root {
+    --font-size: 20px;
+  }
+}
