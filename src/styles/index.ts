@@ -1,4 +1,6 @@
 export enum Color {
+  Black = "var(--black)",
+  White = "var(--white)",
   Accent = "var(--color-accent)",
   Text_Primary = "var(--color-text-primary)",
   Text_Secondary = "var(--color-text-secondary)",

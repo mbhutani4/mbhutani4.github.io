@@ -1,17 +1,9 @@
-import { FC } from "react";
 import styled from "@emotion/styled";
-import { IconButton } from "components/ui/Button";
+import { IconButton } from "components/Button";
 import IconDown from "icons/Down";
+import { Color } from "styles";
 
-const Container = styled.footer`
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-  border-top: 1px solid #444;
-`;
-
-const Footer: FC = () => {
+export default function Footer(): JSX.Element {
   return (
     <Container>
       © Mahima Bhutani • <a href="mailto:mahima@bhutani.design">Contact</a>
@@ -25,9 +17,15 @@ const Footer: FC = () => {
       </ScrollToTop>
     </Container>
   );
-};
+}
 
-export default Footer;
+const Container = styled.footer`
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  border-top: 1px solid ${Color.Border};
+`;
 
 const ScrollToTop = styled(IconButton)`
   position: fixed;

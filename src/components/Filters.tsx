@@ -40,13 +40,14 @@ function filterProjectsWithSelectedTag(
     : projects;
 }
 
-function Filters({
+export function Filters({
   tags,
   selectedTags,
   toggleTag,
+  className,
 }: FilterRowProps): JSX.Element {
   return (
-    <FilterRow>
+    <FilterRow className={className}>
       {tags.map((tag) => (
         <Tag
           key={tag}
@@ -64,6 +65,7 @@ interface FilterRowProps {
   tags: string[];
   selectedTags: string[];
   toggleTag: (tag: string) => void;
+  className?: string;
 }
 
 const FilterRow = styled.div`
@@ -72,7 +74,7 @@ const FilterRow = styled.div`
   flex-wrap: wrap;
 `;
 
-const Tag = styled.button`
+export const Tag = styled.button`
   padding: 0.5em 1em;
   border-radius: 2em;
   background-color: transparent;
@@ -90,6 +92,6 @@ const Tag = styled.button`
 
   &[data-active="true"] {
     background-color: ${Color.Accent};
-    color: ${Color.Text_Primary};
+    color: ${Color.White};
   }
 `;

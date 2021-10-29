@@ -18,13 +18,16 @@ export default function Header(): JSX.Element {
       <nav>
         <NavBarList>
           <NavItemWithLink href="/MahimaBhutani_UXDesigner_Resume.pdf">
-            <IconResume /> Resume
+            <IconResume />
+            <span className="linkText">Resume</span>
           </NavItemWithLink>
           <NavItemWithLink href="https://www.linkedin.com/in/mahimabhutani/">
-            <IconLinkedIn /> LinkedIn
+            <IconLinkedIn />
+            <span className="linkText">LinkedIn</span>
           </NavItemWithLink>
           <NavItemWithLink href="mailto:mahima@bhutani.design">
-            <IconMail /> Mail
+            <IconMail />
+            <span className="linkText">Mail</span>
           </NavItemWithLink>
         </NavBarList>
       </nav>
@@ -74,8 +77,12 @@ const HeadBar = styled.header`
     }
   }
 
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
+  @media screen and (max-width: 550px) {
+    /* flex-direction: column; */
+    gap: 0;
+    .linkText {
+      display: none;
+    }
   }
 `;
 

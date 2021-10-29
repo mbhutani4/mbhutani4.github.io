@@ -135,7 +135,7 @@ body {
   font-family: var(--font-family, "Poppins"), -apple-system, BlinkMacSystemFont,
     Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-  background-color: var(--color-background-primary, white);
+  background-color: var(--color-background-secondary, white);
   color: var(--color-text-primary, black);
   font-size: var(--font-size, 16px);
 }

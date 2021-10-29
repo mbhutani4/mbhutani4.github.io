@@ -11,10 +11,30 @@ export function getAllProjects() {
   return projects.sort(({ order: a = 0 }, { order: b = 0 }) => b - a);
 }
 
-export function getProject(projectName: string) {
+export function getProject(projectId: string) {
   const projectFilePath =
-    process.cwd() + "/" + projectsDir + "/" + projectName + ".md";
-  return readMarkdownFile(projectFilePath);
+    process.cwd() + "/" + projectsDir + "/" + projectId + ".md";
+  const parsed = readMarkdownFile(projectFilePath);
+  const siblings = getSiblingProject(projectId);
+  return {
+    ...parsed,
+    ...siblings,
+  };
+}
+
+function getSiblingProject(projectId: string): {
+  next: Project;
+  prev: Project;
+} {
+  const allProjects = getAllProjects();
+  const maxIndex = allProjects.length - 1;
+  const index = allProjects.findIndex((project) => project.id === projectId);
+  const nextIndex = index < maxIndex ? index + 1 : 0;
+  const prevIndex = index > 0 ? index - 1 : maxIndex;
+  return {
+    next: allProjects[nextIndex]!,
+    prev: allProjects[prevIndex]!,
+  };
 }
 
 function readMarkdownFile(filePath: string) {

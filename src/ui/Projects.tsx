@@ -17,7 +17,10 @@ export default function Projects({
   const { filteredProjects, toggleTag, renderedFilterRow } =
     useFilterRow(projects);
   return (
-    <Section id="projects">
+    <Section
+      id="projects"
+      style={{ backgroundColor: Color.Background_Primary }}
+    >
       <SubHeading>Projects</SubHeading>
       {renderedFilterRow}
       {filteredProjects.length > 0 ? (
@@ -85,19 +88,29 @@ function ProjectCard({
 }
 
 const ProjectGrid = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
   gap: 2rem;
   margin-top: 2em;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @media screen and (min-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 1800px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 const Card = styled.article`
-  flex: 1;
   width: 100%;
-  min-width: 250px;
+  height: 100%;
   min-height: 400px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CardImage = styled.div`
@@ -114,6 +127,7 @@ const CardData = styled.div`
   height: auto;
   position: relative;
   padding: 1em 0;
+  flex: 1;
 `;
 
 const CardTitle = styled(Heading)`
@@ -123,7 +137,7 @@ const CardTitle = styled(Heading)`
 `;
 
 const CardText = styled(Paragraph)`
-  font-size: 1;
+  font-size: 1em;
   font-weight: normal;
   /* color: ${Color.Accent}; */
   max-width: 100%;

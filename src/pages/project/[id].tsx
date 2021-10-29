@@ -1,33 +1,82 @@
 import Head from "next/head";
 
 import Header from "ui/Header";
-import Hero from "components/Project/Hero";
-import Markdown from "components/Project/Markdown";
+import Markdown from "ui/Markdown";
 import Footer from "ui/Footer";
+import Siblings from "ui/Siblings";
 import { getAllProjects, getProject } from "helpers/getProjects";
+import { HeroSection } from "components/layout";
+import { Tag } from "components/Filters";
 
 import type { CSSProperties } from "react";
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+} from "next";
 import type { Project } from "helpers/typeDefinitions";
+import styled from "@emotion/styled";
+import { Color } from "styles";
+import { capitalise } from "helpers/tags";
 
 export default function ProjectPage({
   project,
   content,
+  next,
+  prev,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <>
       <Meta {...project} />
       <Header />
-      <Hero project={project} />
-      <main style={{ "--accent": project.accent } as CSSProperties}>
-        <Markdown markdown={content} project={project} />
-      </main>
+      <HeroImage project={project} />
+      <Markdown markdown={content} project={project} />
+      <Siblings next={next} prev={prev} />
       <Footer />
     </>
   );
 }
 
-export const getStaticPaths = async () => {
+function HeroImage({
+  project,
+  style,
+}: {
+  project: Project;
+  style?: CSSProperties;
+}): JSX.Element {
+  const { image, tags = [] } = project;
+  return (
+    <HeroSection
+      style={{
+        ...style,
+        backgroundImage: `url(${image})`,
+        height: "70vh",
+      }}
+    >
+      <TagsContainer>
+        {tags.map((tag) => (
+          <CustomTag key={tag}>{capitalise(tag)}</CustomTag>
+        ))}
+      </TagsContainer>
+    </HeroSection>
+  );
+}
+
+const TagsContainer = styled.div`
+  position: absolute;
+  bottom: -1.5em;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+`;
+
+const CustomTag = styled(Tag)`
+  cursor: initial;
+  background-color: ${Color.Background_Primary};
+`;
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const projects = getAllProjects();
   const paths = projects.map(({ id }) => `/project/${id}`);
   return { paths, fallback: false };
@@ -36,6 +85,8 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<{
   project: Project;
   content: string;
+  next: Project;
+  prev: Project;
 }> = async ({ params }) => {
   const projectName = params?.id as string;
   return {
