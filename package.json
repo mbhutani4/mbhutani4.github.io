@@ -19,7 +19,7 @@
     "remark-gfm": "^1.0.0",
     "scroll-snap": "^3.2.1"
   },
-  "author": "Siddhant Gupta",
+  "author": "Mahima Bhutani",
   "repository": "https://github.com/mbhutani4/mbhutani4.github.io",
   "devDependencies": {
     "@types/node": "^14.14.31",
