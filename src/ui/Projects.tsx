@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import styled from "@emotion/styled";
-// import { Color } from "styles";
 import { Section } from "components/layout";
 import { SubHeading, Paragraph, Heading } from "components/typography";
 import useFilterRow from "components/Filters";
@@ -51,7 +50,7 @@ function ProjectCard({
   return (
     <Card>
       <Link href={linkHref}>
-        <CardImage>
+        <CardImage className="CardImage">
           <Image
             src={image}
             layout="fill"
@@ -111,6 +110,10 @@ const Card = styled.article`
   position: relative;
   display: flex;
   flex-direction: column;
+  
+  &:hover .CardImage {
+    transform: scale(1.05);
+  }
 `;
 
 const CardImage = styled.div`
@@ -120,6 +123,7 @@ const CardImage = styled.div`
   height: 300px;
   position: relative;
   cursor: pointer;
+  transition: transform 0.3s; 
 `;
 
 const CardData = styled.div`
