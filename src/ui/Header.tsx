@@ -17,7 +17,7 @@ export default function Header(): JSX.Element {
       </Link>
       <nav>
         <NavBarList>
-          <NavItemWithLink href="/MahimaBhutani_UXDesigner_Resume.pdf">
+          <NavItemWithLink href="/MahimaBhutani_Resume.pdf">
             <IconResume />
             <span className="linkText">Resume</span>
           </NavItemWithLink>

@@ -1,7 +1,7 @@
 ---
-id: teachingApp
+id: teaching-app
 name: Teaching app
-image: /projects/teachingApp/teaching_app.jpg
+image: /projects/teaching-app/teaching_app.jpg
 description: A mobile application which support students to look for teachers having expertise in their domains.
 accent: "#000080"
 order: 1
@@ -52,22 +52,22 @@ Based on the field study, I started creating paper prototypes for conducting som
 
 Some refined prototypes were created to check how the app could look like in future and interviews were conducted to gather feedback. The strategy was to observe how users interact with the app, how basic actions are performed and looking out for errors. Few tasks were given to the users and later they were interviewed about the same.
 
-![Paper Prototyping](/projects/teachingApp/teachingapp_paper_prototype.jpg)
+![Paper Prototyping](/projects/teaching-app/teachingapp_paper_prototype.jpg)
 
 ## Site Map and Click Stream
 
 A site map of all the interfaces to visualize the architectural layout of the app. This map together with the clickstream was used for developing initial high fidelity prototype using Sketch. A complete design for the app was created first along with the working prototype to have a clear view of the app and the number of screens required.
 
-![Site map](/projects/teachingApp/teachingapp_sitemap.png)
+![Site map](/projects/teaching-app/teachingapp_sitemap.png)
 
 ## Initial Prototype
 
 A sample version was designed and tested before releasing high fidelity prototype. The interactive prototype helped both users and testers to explore and experience the working of application giving them a better insight of the features available.
 
-![Initial Prototype](/projects/teachingApp/teachingapp_initial_design.jpg)
+![Initial Prototype](/projects/teaching-app/teachingapp_initial_design.jpg)
 
 ## Final Prototype
 
 This was the final design and a Native app was build using Android Studio for development. Later the app was tested with both teachers and students for further feedback.
 
-![Final Prototype](/projects/teachingApp/teachingapp_final_design.jpg)
+![Final Prototype](/projects/teaching-app/teachingapp_final_design.jpg)
