@@ -12,3 +12,7 @@ tags:
 ---
 
 # Harmony
+
+The design system for FA Solutions' modern applications. It contains themes, component designs and accessibility.
+
+> Coming soon. Stay tuned!
