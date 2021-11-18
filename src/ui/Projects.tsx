@@ -78,7 +78,7 @@ function ProjectCard({
         {tags.length > 0 ? (
           <CardText>
             {tags.map((tag) => (
-              <a onClick={() => toggleTag(tag)}>#{capitalise(tag)} </a>
+              <a key={tag} onClick={() => toggleTag(tag)}>#{capitalise(tag)} </a>
             ))}
           </CardText>
         ) : null}

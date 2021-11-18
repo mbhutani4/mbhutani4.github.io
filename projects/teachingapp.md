@@ -20,8 +20,6 @@ The project was done as the part of Developing Mobile Application course at KTH 
 
 I was part of a team and responsible for the research study, interaction design, visual design, branding and user testing for both student and professional experience.
 
-![App](/projects/teachingApp/teaching_app.jpg)
-
 ## Problem Statement
 
 The residents of the same housing communities are not familiar with each other and they require assistance in their day-to-day work and they ask help from other residents for the same.

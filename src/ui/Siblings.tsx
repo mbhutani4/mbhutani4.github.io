@@ -53,6 +53,10 @@ const Container = styled.section`
     fill: ${Color.Accent};
   }
 
+  #previous, #next{
+    flex:1;
+  }
+
   #previous svg {
     transform: rotate(90deg);
   }
