@@ -19,7 +19,7 @@ Demo: https://harmony.fasolutions.com/#/components
 
 ## Theme
 
-![Colours](/projects/harmony/Colours.png)
+![Colours](/projects/harmony/Colours.jpg)
 ![Shadows](/projects/harmony/Shadows.png)
 ![Typography](/projects/harmony/Typography.png)
 
