@@ -15,4 +15,19 @@ tags:
 
 The design system for FA Solutions' modern applications. It contains themes, component designs and accessibility.
 
-> Coming soon. Stay tuned!
+Demo: https://harmony.fasolutions.com/#/components
+
+## Theme
+
+![Colours](/projects/harmony/Colours.png)
+![Shadows](/projects/harmony/Shadows.png)
+![Typography](/projects/harmony/Typography.png)
+
+## Components
+
+![Buttons](/projects/harmony/Buttons.png)
+
+- Button: https://harmony.fasolutions.com/#/components/Button
+- Form: https://harmony.fasolutions.com/#/components/Form1
+- Table: https://harmony.fasolutions.com/#/components/Table
+- Stepper: https://harmony.fasolutions.com/#/components/Stepper
