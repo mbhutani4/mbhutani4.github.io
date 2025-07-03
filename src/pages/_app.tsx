@@ -1,10 +1,17 @@
-// import App from "next/app";
-import type { AppProps /*, AppContext */ } from "next/app";
+import { useEffect } from "react"
+import type { AppProps } from "next/app";
 import Head from "next/head";
 import "styles/globals.css";
 import "styles/theme.css";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-NQRF4J353G");
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+     ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+  }, []);
+
   return (
     <>
       <Head>
