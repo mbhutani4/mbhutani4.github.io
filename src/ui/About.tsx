@@ -8,15 +8,14 @@ export default function About(): JSX.Element {
       <Heading>Hi, I'm Mahima</Heading>
       <SubHeading style={{ color: Color.Accent }}>UX/UI Designer</SubHeading>
       <Paragraph>
-        I am passionate about using UX/UI and IxD to design user-friendly
-        products, environments and systems. I use my skills in user research,
-        front end development, user testing, prototyping and heuristic
-        evaluation to implement our client’s vision. I love solving problems and
-        tackling new challenges. I look to create synergies and cohesion in
-        teams to bring out the best performance and exceed expectations.
+       Designer with 7+ years of experience designing intuitive, scalable digital
+experiences across web and mobile platforms. Specialization in information
+architecture, interaction design, design systems, and accessibility. Track
+record leading cross-functional teams to deliver user-centered solutions for
+complex enterprise and consumer products.
       </Paragraph>
       <Paragraph>
-        I am skilled with Figma, Sketch, Adobe XD and InVision.
+        I am skilled with Figma and Adobe XD.
       </Paragraph>
     </HeroSection>
   );
