@@ -9,12 +9,11 @@ import { Color } from "styles";
 import type { PropsWithChildren } from "react";
 import type { LinkProps } from "next/link";
 
-export default function Header(): JSX.Element {
+export default function Header(): React.ReactElement {
   return (
     <HeadBar>
-      <Link href="/">
-        <LogoTitle>Mahima Bhutani</LogoTitle>
-      </Link>
+      <LogoTitle href="/">Mahima Bhutani</LogoTitle>
+
       <nav>
         <NavBarList>
           <NavItemWithLink href="/MahimaBhutani_Resume.pdf">
@@ -38,12 +37,10 @@ export default function Header(): JSX.Element {
 function NavItemWithLink({
   children,
   ...linkProps
-}: PropsWithChildren<LinkProps>): JSX.Element {
+}: PropsWithChildren<LinkProps>): React.ReactElement {
   return (
     <NavBarItem>
-      <Link {...linkProps}>
-        <a>{children}</a>
-      </Link>
+      <Link {...linkProps}>{children}</Link>
     </NavBarItem>
   );
 }

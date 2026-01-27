@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<{
   };
 };
 
-function Meta(): JSX.Element {
+function Meta(): React.ReactElement {
   const title = "Mahima Bhutani";
   return (
     <Head>

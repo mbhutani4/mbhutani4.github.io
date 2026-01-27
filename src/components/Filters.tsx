@@ -16,7 +16,7 @@ export default function useFilterRow(projects: Project[]) {
 
   const filteredProjects = useMemo(
     () => filterProjectsWithSelectedTag(projects, selectedTags),
-    [projects, selectedTags]
+    [projects, selectedTags],
   );
 
   const renderedFilterRow = (
@@ -28,14 +28,14 @@ export default function useFilterRow(projects: Project[]) {
 
 function filterProjectsWithSelectedTag(
   projects: Project[],
-  selectedTags: string[]
+  selectedTags: string[],
 ): Project[] {
   return selectedTags.length > 0
     ? projects.filter((project) =>
         // For AND use `every`; for OR use `some`
         selectedTags.every((selectedTag) =>
-          isContainTag(project.tags || [], selectedTag)
-        )
+          isContainTag(project.tags || [], selectedTag),
+        ),
       )
     : projects;
 }
@@ -45,7 +45,7 @@ export function Filters({
   selectedTags,
   toggleTag,
   className,
-}: FilterRowProps): JSX.Element {
+}: FilterRowProps): React.ReactElement {
   return (
     <FilterRow className={className}>
       {tags.map((tag) => (
@@ -83,7 +83,9 @@ export const Tag = styled.button`
   border: 1px solid ${Color.Border};
   margin: 0.25em;
   cursor: pointer;
-  transition: background-color 0.5s, color 0.5s;
+  transition:
+    background-color 0.5s,
+    color 0.5s;
 
   &:hover {
     background-color: ${Color.Background_Secondary};

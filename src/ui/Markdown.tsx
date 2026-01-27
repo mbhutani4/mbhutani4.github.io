@@ -16,7 +16,7 @@ export default function Markdown({
   return (
     <Container style={{ "--accent": project.accent } as CSSProperties}>
       <main>
-        <ReactMarkdown allowDangerousHtml plugins={[gfm]} children={markdown} />
+        <ReactMarkdown remarkPlugins={[gfm]}>{markdown}</ReactMarkdown>
       </main>
     </Container>
   );

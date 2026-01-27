@@ -11,30 +11,24 @@ export default function Siblings({
 }: {
   next: Project;
   prev: Project;
-}): JSX.Element {
+}): React.ReactElement {
   return (
     <Container id="siblings">
-      <Link href={"/project/" + prev.id}>
-        <a id="previous">
-          <IconDown />
-          <br />
-          {prev.name}
-        </a>
+      <Link href={"/project/" + prev.id} id="previous">
+        <IconDown />
+        <br />
+        {prev.name}
       </Link>
-      <Link href={"/#projects"}>
-        <a id="home">
-          <IconGrid />
-          <br />
-          {"All projects"}
-        </a>
+      <Link href={"/#projects"} id="home">
+        <IconGrid />
+        <br />
+        {"All projects"}
       </Link>
 
-      <Link href={"/project/" + next.id}>
-        <a id="next">
-          <IconDown />
-          <br />
-          {next.name}
-        </a>
+      <Link href={"/project/" + next.id} id="next">
+        <IconDown />
+        <br />
+        {next.name}
       </Link>
     </Container>
   );
@@ -53,8 +47,9 @@ const Container = styled.section`
     fill: ${Color.Accent};
   }
 
-  #previous, #next{
-    flex:1;
+  #previous,
+  #next {
+    flex: 1;
   }
 
   #previous svg {

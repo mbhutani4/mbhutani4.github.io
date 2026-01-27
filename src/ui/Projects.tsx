@@ -12,7 +12,7 @@ export default function Projects({
   projects,
 }: {
   projects: Project[];
-}): JSX.Element {
+}): React.ReactElement {
   const { filteredProjects, toggleTag, renderedFilterRow } =
     useFilterRow(projects);
   return (
@@ -44,7 +44,7 @@ function ProjectCard({
   description,
   tags = [],
   toggleTag,
-}: Project & { toggleTag: (tag: string) => void }): JSX.Element {
+}: Project & { toggleTag: (tag: string) => void }): React.ReactElement {
   const linkHref = "/project/" + id;
 
   return (
@@ -62,22 +62,19 @@ function ProjectCard({
       </Link>
       <CardData>
         <Link href={linkHref}>
-          <a>
-            <CardTitle as="h3">{name}</CardTitle>
-          </a>
+          <CardTitle as="h3">{name}</CardTitle>
         </Link>
         {description ? (
           <CardText>
-            {description}{" "}
-            <Link href={linkHref}>
-              <a>Read more.</a>
-            </Link>
+            {description} <Link href={linkHref}>Read more.</Link>
           </CardText>
         ) : null}
         {tags.length > 0 ? (
           <CardText>
             {tags.map((tag) => (
-              <a key={tag} onClick={() => toggleTag(tag)}>#{capitalise(tag)} </a>
+              <a key={tag} onClick={() => toggleTag(tag)}>
+                #{capitalise(tag)}{" "}
+              </a>
             ))}
           </CardText>
         ) : null}
@@ -110,7 +107,7 @@ const Card = styled.article`
   position: relative;
   display: flex;
   flex-direction: column;
-  
+
   &:hover .CardImage {
     transform: scale(1.05);
   }
@@ -123,7 +120,7 @@ const CardImage = styled.div`
   height: 300px;
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s; 
+  transition: transform 0.3s;
 `;
 
 const CardData = styled.div`

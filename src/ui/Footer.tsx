@@ -3,7 +3,7 @@ import { IconButton } from "components/Button";
 import IconDown from "icons/Down";
 import { Color } from "styles";
 
-export default function Footer(): JSX.Element {
+export default function Footer(): React.ReactElement {
   return (
     <Container>
       © Mahima Bhutani • <a href="mailto:mahima@bhutani.design">Contact</a>

@@ -24,7 +24,7 @@ export default function ProjectPage({
   content,
   next,
   prev,
-}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+}: InferGetStaticPropsType<typeof getStaticProps>): React.ReactElement {
   return (
     <>
       <Meta {...project} />
@@ -43,7 +43,7 @@ function HeroImage({
 }: {
   project: Project;
   style?: CSSProperties;
-}): JSX.Element {
+}): React.ReactElement {
   const { image, tags = [] } = project;
   return (
     <HeroSection
@@ -99,7 +99,7 @@ function Meta({
   id: projectId,
   description = "Portfolio of Mahima Bhutani.",
   image,
-}: Project): JSX.Element {
+}: Project): React.ReactElement {
   const siteName = "Mahima Bhutani";
   const domainUrl = "https://bhutani.design";
   const imageUrl = image
