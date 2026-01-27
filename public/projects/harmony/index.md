@@ -1,7 +1,7 @@
 ---
 id: harmony
 name: Harmony
-image: /projects/harmony/hero.jpg
+image: ./hero.jpg
 description: Design system. Coming Soon.
 accent: "#663399"
 order: 5
@@ -19,13 +19,13 @@ Demo: https://harmony.fasolutions.com/#/components
 
 ## Theme
 
-![Colours](/projects/harmony/Colours.jpg)
-![Shadows](/projects/harmony/Shadows.png)
-![Typography](/projects/harmony/Typography.png)
+![Colours](./Colours.jpg)
+![Shadows](./Shadows.png)
+![Typography](./Typography.png)
 
 ## Components
 
-![Buttons](/projects/harmony/Buttons.png)
+![Buttons](./Buttons.png)
 
 - Button: https://harmony.fasolutions.com/#/components/Button
 - Form: https://harmony.fasolutions.com/#/components/Form1

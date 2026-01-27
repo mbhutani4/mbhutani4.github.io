@@ -110,9 +110,7 @@ function Meta({
 
   return (
     <Head>
-      <title>
-        {title} | {siteName}
-      </title>
+      <title>{`${title} | ${siteName}`}</title>
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content={siteName} />

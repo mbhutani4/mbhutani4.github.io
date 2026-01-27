@@ -1,7 +1,7 @@
 ---
 id: fundmanagement
 name: Fund management
-image: /projects/fundmanagement/hero.jpg
+image: ./hero.jpg
 description: An application which allow Fund managers to manage their funds, portfolios, daily tasks like NAv calculations and managing shareholder registries.
 accent:
 order: 4
@@ -31,7 +31,7 @@ Product design and development followed each other in quick succession. Once the
 I conducted various workshops and testing with the multiple domain experts. The feedback and results were analysed and used for redesigning the existing functionalities of the process. Simultaneously, I designed the next features in the pipeline while working with development team to implement the current features.
 The design and testing was incorporated into the development process. The milestones were set quarterly based on the development cycle and the remaining time was used for designing.
 
-![Image](/projects/fundmanagement/fm_lean_ux_cycle.png)
+![Image](./fm_lean_ux_cycle.png)
 
 ## "Think" stage : User Research
 
@@ -41,7 +41,7 @@ The process for managing and working with funds already existed. User interviews
 
 Remote and face-to-face interviews were conducted with users with different expertise to know about the issues and problems encountered while using the existing process. There were total 9 participants, 6 male and 3 female belonging to age group 30-60 years.
 
-![Image](/projects/fundmanagement/userinterviews.png)
+![Image](./userinterviews.png)
 
 <!-- Understanding the complexities of the process while providing a design solution which is accessible and has a low learning curve. -->
 
@@ -65,22 +65,22 @@ To read more about the the design system ["Harmony"](/project/harmony).
 
 During the brainstorming sessions, paper prototypes were designed to gather early and honest feedback from the users. These paper sketches acted as a foundation in outlining the steps of the user flow or explore and validate a variety of layouts.
 
-![Image](/projects/fundmanagement/FA_FUND-low_fidelity-1.jpg)
-![Image](/projects/fundmanagement/FA_FUND-low_fidelity-2.jpg)
+![Image](./FA_FUND-low_fidelity-1.jpg)
+![Image](./FA_FUND-low_fidelity-2.jpg)
 
 ### High-fidelity - Figma design
 
 The final designed application is available both in light and dark mode. Screenshot of the final application
 
-![Image](/projects/fundmanagement/fm_details_light.png)
-![Image](/projects/fundmanagement/fm_summary_light.png)
-![Image](/projects/fundmanagement/fm_warnings_light.png)
+![Image](./fm_details_light.png)
+![Image](./fm_summary_light.png)
+![Image](./fm_warnings_light.png)
 
 **PS: We have dark mode too.**
 
-![Image](/projects/fundmanagement/fm_details_dark.png)
-![Image](/projects/fundmanagement/fm_summary_dark.png)
-![Image](/projects/fundmanagement/fm_warnings_dark.png)
+![Image](./fm_details_dark.png)
+![Image](./fm_summary_dark.png)
+![Image](./fm_warnings_dark.png)
 
 ## "Check" stage : Testing with the Users
 
