@@ -1,72 +1,52 @@
-import styled from "@emotion/styled";
-import { Color } from "styles";
+import { forwardRef } from "react";
+import type { ButtonHTMLAttributes } from "react";
+import { cn } from "helpers/cn";
 
-export const Button = styled.button`
-  width: auto;
-  height: auto;
-  border-radius: 8px;
-  padding: 8px 16px;
-  background: ${Color.Background_Primary};
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  color: ${Color.Text_Secondary};
-  fill: ${Color.Text_Secondary};
-  border: 2px solid ${Color.Border};
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-  &:hover {
-    background: ${Color.Background_Disabled};
-    color: ${Color.Text_Primary};
-    fill: ${Color.Text_Primary};
-  }
-`;
+const baseButtonClasses =
+  "inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[var(--color-border)] bg-[var(--color-background-primary)] text-base text-[var(--color-text-secondary)] transition-colors duration-200";
 
-export const IconButton = styled(Button)`
-  padding: 0.25em;
-  height: 2em;
-  width: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={cn(
+        baseButtonClasses,
+        "px-4 py-2",
+        "hover:bg-[var(--color-background-disabled)] hover:text-[var(--color-text-primary)]",
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
 
-export const ButtonOutline = styled(Button)`
-  border: 2px solid ${Color.Border};
-  background: none;
-  color: ${Color.Text_Primary};
+Button.displayName = "Button";
 
-  &:focus {
-    background: ${Color.Background_Disabled};
-  }
+export const IconButton = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, ...props }, ref) => (
+    <Button ref={ref} className={cn("h-8 w-8 p-1", className)} {...props} />
+  ),
+);
 
-  &:hover {
-    background: ${Color.Background_Inverse};
-    color: ${Color.Text_Inverse};
-  }
+IconButton.displayName = "IconButton";
 
-  &:active {
-    background: ${Color.Background_Primary};
-  }
-`;
+export const ButtonOutline = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={cn(
+        baseButtonClasses,
+        "px-4 py-2",
+        "bg-transparent text-[var(--color-text-primary)] hover:bg-[var(--color-background-inverse)] hover:text-[var(--color-text-inverse)] focus:bg-[var(--color-background-disabled)] active:bg-[var(--color-background-primary)]",
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
 
-// export const ButtonOutlineDark = styled(Button)`
-//   border: 2px solid black;
-//   color: black;
-//   background: none;
-
-//   &:focus {
-//     background: #fff4;
-//   }
-
-//   &:hover {
-//     background: black;
-//     color: white;
-//     border: 2px solid black;
-//   }
-
-//   &:active {
-//     background: #333;
-//   }
-// `;
+ButtonOutline.displayName = "ButtonOutline";
 
 export default Button;

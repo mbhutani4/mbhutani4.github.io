@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import styled from "@emotion/styled";
+import type { ReactElement } from "react";
 import {
   isContainTag,
   capitalise,
@@ -9,6 +9,7 @@ import {
 } from "../helpers/tags";
 import { useTags } from "../helpers/useTags";
 import { Tag } from "components/Tag";
+import { cn } from "helpers/cn";
 
 import type { Project } from "helpers/typeDefinitions";
 
@@ -47,9 +48,9 @@ export function Filters({
   selectedTags,
   toggleTag,
   className,
-}: FilterRowProps): React.ReactElement {
+}: FilterRowProps): ReactElement {
   return (
-    <FilterRow className={className}>
+    <div className={cn("my-4 flex flex-wrap", className)}>
       {tags.map((tag) => (
         <Tag
           key={tag}
@@ -59,7 +60,7 @@ export function Filters({
           {capitalise(tag)}
         </Tag>
       ))}
-    </FilterRow>
+    </div>
   );
 }
 
@@ -69,9 +70,3 @@ interface FilterRowProps {
   toggleTag: (tag: string) => void;
   className?: string;
 }
-
-const FilterRow = styled.div`
-  margin: 1em 0;
-  display: flex;
-  flex-wrap: wrap;
-`;

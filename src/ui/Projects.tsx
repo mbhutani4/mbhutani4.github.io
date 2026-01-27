@@ -2,34 +2,30 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import styled from "@emotion/styled";
-import { Section } from "components/layout";
-import { SubHeading, Paragraph, Heading } from "components/typography";
+import { Section } from "components/Section";
+import { SubHeading, Paragraph, Heading } from "components/Text";
 import useFilterRow from "components/Filters";
 import { Project } from "helpers/typeDefinitions";
 import { capitalise } from "helpers/tags";
-import { Color } from "styles";
+import type { ReactElement } from "react";
 
 export default function Projects({
   projects,
 }: {
   projects: Project[];
-}): React.ReactElement {
+}): ReactElement {
   const { filteredProjects, toggleTag, renderedFilterRow } =
     useFilterRow(projects);
   return (
-    <Section
-      id="projects"
-      style={{ backgroundColor: Color.Background_Primary }}
-    >
+    <Section id="projects" className="bg-[var(--color-background-primary)]">
       <SubHeading>Projects</SubHeading>
       {renderedFilterRow}
       {filteredProjects.length > 0 ? (
-        <ProjectGrid>
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {filteredProjects.map((project) => (
             <ProjectCard {...project} key={project.id} toggleTag={toggleTag} />
           ))}
-        </ProjectGrid>
+        </div>
       ) : (
         <Paragraph>
           No projects match the filters. Try with different filters.
@@ -46,13 +42,13 @@ function ProjectCard({
   description,
   tags = [],
   toggleTag,
-}: Project & { toggleTag: (tag: string) => void }): React.ReactElement {
+}: Project & { toggleTag: (tag: string) => void }): ReactElement {
   const linkHref = "/project/" + id;
 
   return (
-    <Card>
+    <article className="group flex h-full min-h-[400px] w-full flex-col">
       <Link href={linkHref}>
-        <CardImage className="CardImage">
+        <div className="CardImage relative h-[300px] w-full overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
           <Image
             src={image}
             alt={name}
@@ -61,88 +57,33 @@ function ProjectCard({
             style={{ objectFit: "cover" }}
             loading="lazy"
           />
-        </CardImage>
+        </div>
       </Link>
-      <CardData>
+      <div className="relative w-full flex-1 py-4">
         <Link href={linkHref}>
-          <CardTitle as="h3">{name}</CardTitle>
+          <Heading as="h3" className="text-2xl font-semibold">
+            {name}
+          </Heading>
         </Link>
         {description ? (
-          <CardText>
+          <Paragraph className="max-w-full text-base">
             {description} <Link href={linkHref}>Read more.</Link>
-          </CardText>
+          </Paragraph>
         ) : null}
         {tags.length > 0 ? (
-          <CardText>
+          <Paragraph className="max-w-full text-base">
             {tags.map((tag) => (
-              <a key={tag} onClick={() => toggleTag(tag)}>
-                #{capitalise(tag)}{" "}
+              <a
+                key={tag}
+                className="mr-2 cursor-pointer text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-accent)]"
+                onClick={() => toggleTag(tag)}
+              >
+                #{capitalise(tag)}
               </a>
             ))}
-          </CardText>
+          </Paragraph>
         ) : null}
-      </CardData>
-    </Card>
+      </div>
+    </article>
   );
 }
-
-const ProjectGrid = styled.div`
-  display: grid;
-  gap: 2rem;
-  margin-top: 2em;
-  grid-template-columns: repeat(2, 1fr);
-
-  @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  @media screen and (min-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media screen and (min-width: 1800px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-`;
-
-const Card = styled.article`
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-
-  &:hover .CardImage {
-    transform: scale(1.05);
-  }
-`;
-
-const CardImage = styled.div`
-  border-radius: 0.5rem;
-  overflow: hidden;
-  width: 100%;
-  height: 300px;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s;
-`;
-
-const CardData = styled.div`
-  width: 100%;
-  height: auto;
-  position: relative;
-  padding: 1em 0;
-  flex: 1;
-`;
-
-const CardTitle = styled(Heading)`
-  font-size: 1.5em;
-  font-weight: normal;
-  /* color: ${Color.Accent}; */
-`;
-
-const CardText = styled(Paragraph)`
-  font-size: 1em;
-  font-weight: normal;
-  /* color: ${Color.Accent}; */
-  max-width: 100%;
-`;

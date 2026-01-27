@@ -8,8 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
+    "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "next": "^16.1.5",
     "raw-loader": "^4.0.2",
@@ -18,7 +17,8 @@
     "react-ga4": "^2.1.0",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
-    "scroll-snap": "^5.0.2"
+    "scroll-snap": "^5.0.2",
+    "tailwind-merge": "^3.4.0"
   },
   "author": "Mahima Bhutani",
   "repository": "https://github.com/mbhutani4/mbhutani4.github.io",
@@ -26,8 +26,12 @@
     "node": ">=24.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.0"
   }
 }

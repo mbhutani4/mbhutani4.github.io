@@ -1,57 +1,28 @@
 "use client";
 
-import styled from "@emotion/styled";
 import { IconButton } from "components/Button";
 import IconDown from "icons/Down";
-import { Color } from "styles";
 import { Social } from "./Social";
+import type { ReactElement } from "react";
 
-export default function Footer(): React.ReactElement {
+export default function Footer(): ReactElement {
   return (
-    <Container>
-      <Content>
-        <span style={{ fontSize: "0.8em" }}>
+    <footer className="mx-auto max-w-4xl border-t border-[var(--color-border)] px-5 py-5 text-center">
+      <div className="flex items-center justify-center gap-2 text-sm md:text-base">
+        <span className="text-sm">
           © 2018-{new Date().getFullYear()} Mahima Bhutani
         </span>
         <Social />
-      </Content>
-      <ScrollToTop
+      </div>
+      <IconButton
+        className="fixed bottom-4 right-4 h-auto w-auto rounded-full bg-[var(--color-background-secondary)] p-2 text-[var(--color-text-primary)] shadow-md [&>svg]:h-4 [&>svg]:w-4 [&>svg]:rotate-180 [&>svg]:fill-current"
         onClick={() => {
           window.scrollTo({ top: 0 });
         }}
         title={"Scroll to top"}
       >
         <IconDown />
-      </ScrollToTop>
-    </Container>
+      </IconButton>
+    </footer>
   );
 }
-
-const Container = styled.footer`
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-  border-top: 1px solid ${Color.Border};
-`;
-
-const Content = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5em;
-`;
-
-const ScrollToTop = styled(IconButton)`
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  width: auto;
-  height: auto;
-
-  svg {
-    height: 1em;
-    width: 1em;
-    transform: rotate(180deg);
-  }
-`;

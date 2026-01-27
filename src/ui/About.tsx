@@ -1,12 +1,11 @@
-import { HeroSection } from "components/layout";
-import { Heading, SubHeading, Paragraph } from "components/typography";
-import { Color } from "styles";
+import { HeroSection } from "components/Section";
+import { Heading, SubHeading, Paragraph } from "components/Text";
 
 export default function About(): React.ReactElement {
   return (
     <HeroSection id="about">
       <Heading>Hi, I'm Mahima</Heading>
-      <SubHeading style={{ color: Color.Accent }}>UX/UI Designer</SubHeading>
+      <SubHeading className="text-accent">UX/UI Designer</SubHeading>
       <Paragraph>
         Designer with 7+ years of experience designing intuitive, scalable
         digital experiences across web and mobile platforms. Specialization in

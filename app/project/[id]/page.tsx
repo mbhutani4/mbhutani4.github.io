@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import Markdown from "ui/Markdown";
 import Siblings from "ui/Siblings";
 import { getAllProjects, getProject } from "helpers/getProjects";
-import { HeroSection } from "components/layout";
+import { HeroSection } from "components/Section";
 import { Tag } from "components/Tag";
 import type { CSSProperties } from "react";
 import type { Project } from "helpers/typeDefinitions";
-import styled from "@emotion/styled";
-import { Color } from "styles";
 import { capitalise } from "helpers/tags";
 
 export function generateStaticParams() {
@@ -15,12 +13,10 @@ export function generateStaticParams() {
   return projects.map(({ id }) => ({ id }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
-}: {
-  params: { id: string };
-}): Metadata {
-  const { project } = getProject(params.id);
+}: PageProps<"/project/[id]">): Promise<Metadata> {
+  const { project } = getProject((await params).id);
   const siteName = "Mahima Bhutani";
   const domainUrl = "https://bhutani.design";
   const imageUrl = project.image?.startsWith("http")
@@ -45,9 +41,7 @@ export function generateMetadata({
 
 export default async function ProjectPage({
   params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+}: PageProps<"/project/[id]">) {
   const { id } = await params;
   const { project, content, next, prev } = getProject(id);
 
@@ -76,25 +70,16 @@ function HeroImage({
         height: "70vh",
       }}
     >
-      <TagsContainer>
+      <div className="absolute -bottom-6 left-0 right-0 flex justify-center">
         {tags.map((tag) => (
-          <CustomTag key={tag}>{capitalise(tag)}</CustomTag>
+          <Tag
+            key={tag}
+            className="cursor-default bg-[var(--color-background-primary)]"
+          >
+            {capitalise(tag)}
+          </Tag>
         ))}
-      </TagsContainer>
+      </div>
     </HeroSection>
   );
 }
-
-const TagsContainer = styled.div`
-  position: absolute;
-  bottom: -1.5em;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-`;
-
-const CustomTag = styled(Tag)`
-  cursor: initial;
-  background-color: ${Color.Background_Primary};
-`;

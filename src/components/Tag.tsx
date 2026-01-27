@@ -1,26 +1,22 @@
-import styled from "@emotion/styled";
-import { Color } from "styles";
+import { forwardRef } from "react";
+import type { ButtonHTMLAttributes } from "react";
+import { cn } from "helpers/cn";
 
-export const Tag = styled.button`
-  padding: 0.5em 1em;
-  border-radius: 2em;
-  background-color: transparent;
-  color: ${Color.Text_Disabled};
-  font-size: 1em;
-  border: 1px solid ${Color.Border};
-  margin: 0.25em;
-  cursor: pointer;
-  transition:
-    background-color 0.5s,
-    color 0.5s;
+type TagProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-  &:hover {
-    background-color: ${Color.Background_Secondary};
-    color: ${Color.Accent};
-  }
+export const Tag = forwardRef<HTMLButtonElement, TagProps>(
+  ({ className, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={cn(
+        "m-1 cursor-pointer rounded-full border border-[var(--color-border)] bg-transparent px-4 py-2 text-base text-[var(--color-text-disabled)] transition-colors duration-500",
+        "hover:bg-[var(--color-background-secondary)] hover:text-[var(--color-accent)]",
+        "data-[active=true]:bg-[var(--color-accent)] data-[active=true]:text-white",
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
 
-  &[data-active="true"] {
-    background-color: ${Color.Accent};
-    color: ${Color.White};
-  }
-`;
+Tag.displayName = "Tag";

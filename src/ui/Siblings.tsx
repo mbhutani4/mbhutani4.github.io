@@ -1,9 +1,8 @@
-import styled from "@emotion/styled";
 import Link from "next/link";
 import type { Project } from "helpers/typeDefinitions";
 import IconDown from "icons/Down";
 import IconGrid from "icons/Grid";
-import { Color } from "styles";
+import type { ReactElement } from "react";
 
 export default function Siblings({
   next,
@@ -11,57 +10,37 @@ export default function Siblings({
 }: {
   next: Project;
   prev: Project;
-}): React.ReactElement {
+}): ReactElement {
   return (
-    <Container id="siblings">
-      <Link href={"/project/" + prev.id} id="previous">
-        <IconDown />
-        <br />
+    <section
+      id="siblings"
+      className="mx-auto flex max-w-3xl items-center justify-between px-4 py-8 text-[var(--color-text-primary)]"
+    >
+      <Link
+        href={"/project/" + prev.id}
+        id="previous"
+        className="flex flex-1 flex-col items-start gap-2 text-left text-[var(--color-text-primary)] [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-current [&_svg]:text-[var(--color-accent)]"
+      >
+        <IconDown className="rotate-90" />
         {prev.name}
       </Link>
-      <Link href={"/#projects"} id="home">
+      <Link
+        href={"/#projects"}
+        id="home"
+        className="flex flex-col items-center gap-2 text-center [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-current [&_svg]:text-[var(--color-accent)]"
+      >
         <IconGrid />
-        <br />
         {"All projects"}
       </Link>
 
-      <Link href={"/project/" + next.id} id="next">
-        <IconDown />
-        <br />
+      <Link
+        href={"/project/" + next.id}
+        id="next"
+        className="flex flex-1 flex-col items-end gap-2 text-right text-[var(--color-text-primary)] [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-current [&_svg]:text-[var(--color-accent)]"
+      >
+        <IconDown className="-rotate-90" />
         {next.name}
       </Link>
-    </Container>
+    </section>
   );
 }
-
-const Container = styled.section`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 800px;
-  margin: auto;
-  padding: 2em 0;
-
-  svg {
-    fill: ${Color.Accent};
-  }
-
-  #previous,
-  #next {
-    flex: 1;
-  }
-
-  #previous svg {
-    transform: rotate(90deg);
-  }
-  #next {
-    text-align: right;
-    svg {
-      transform: rotate(-90deg);
-    }
-  }
-  #home {
-    text-align: center;
-  }
-`;

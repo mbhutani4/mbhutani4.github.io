@@ -1,77 +1,46 @@
-import styled from "@emotion/styled";
+import type { PropsWithChildren, ReactElement, ReactNode } from "react";
 import IconLinkedIn from "icons/LinkedIn";
 import IconMail from "icons/Mail";
 import IconResume from "icons/Resume";
 import Link, { LinkProps } from "next/link";
-import { Color } from "styles";
 
-export function Social(): React.ReactNode {
+export function Social(): ReactNode {
   return (
-    <NavBarList>
+    <ul className="flex list-none items-center gap-4 text-sm md:text-base">
       <NavItemWithLink href="/MahimaBhutani_Resume.pdf">
-        <IconResume />
-        <span className="linkText">Resume</span>
+        <div className="h-4 w-4 fill-current flex items-center justify-center">
+          <IconResume />
+        </div>
+        <span className="linkText max-[550px]:hidden">Resume</span>
       </NavItemWithLink>
       <NavItemWithLink href="https://www.linkedin.com/in/mahimabhutani/">
-        <IconLinkedIn />
-        <span className="linkText">LinkedIn</span>
+        <div className="h-4 w-4 fill-current flex items-center justify-center">
+          <IconLinkedIn />
+        </div>
+        <span className="linkText max-[550px]:hidden">LinkedIn</span>
       </NavItemWithLink>
       <NavItemWithLink href="mailto:mahima@bhutani.design">
-        <IconMail />
-        <span className="linkText">Mail</span>
+        <div className="h-4 w-4 fill-current flex items-center justify-center">
+          <IconMail />
+        </div>
+        <span className="linkText max-[550px]:hidden">Mail</span>
       </NavItemWithLink>
-    </NavBarList>
+    </ul>
   );
 }
 
 function NavItemWithLink({
   children,
   ...linkProps
-}: React.PropsWithChildren<LinkProps>): React.ReactElement {
+}: PropsWithChildren<LinkProps>): ReactElement {
   return (
-    <NavBarItem>
-      <Link {...linkProps}>{children}</Link>
-    </NavBarItem>
+    <li>
+      <Link
+        {...linkProps}
+        className="flex items-center justify-start gap-2 text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] [&>svg]:transition-transform [&>svg]:hover:scale-110"
+      >
+        {children}
+      </Link>
+    </li>
   );
 }
-
-const NavBarList = styled.ul`
-  display: flex;
-  align-items: center;
-  list-style: none;
-  font-size: 0.9rem;
-  margin: 0;
-`;
-
-const NavBarItem = styled.li`
-  margin: 0 0 0 1em;
-
-  &,
-  a {
-    color: ${Color.Text_Secondary};
-    fill: ${Color.Text_Secondary};
-  }
-
-  a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  &:hover,
-  a:hover {
-    color: ${Color.Text_Primary};
-    fill: ${Color.Text_Primary};
-  }
-
-  svg {
-    width: 1em;
-    height: 1em;
-    margin: 0 0.5em;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-`;

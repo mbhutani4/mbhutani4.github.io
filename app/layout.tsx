@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AnalyticsClient } from "./analytics-client";
+import { Suspense } from "react";
 import Header from "ui/Header";
 import Footer from "ui/Footer";
 import "styles/globals.css";
@@ -29,8 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <AnalyticsClient />
+      <body className="bg-secon">
+        <Suspense>
+          <AnalyticsClient />
+        </Suspense>
         <Header />
         <main>{children}</main>
         <Footer />
