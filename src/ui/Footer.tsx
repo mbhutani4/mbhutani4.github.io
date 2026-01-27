@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "@emotion/styled";
 import { IconButton } from "components/Button";
 import IconDown from "icons/Down";

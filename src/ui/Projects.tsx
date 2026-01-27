@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import styled from "@emotion/styled";
@@ -53,9 +55,10 @@ function ProjectCard({
         <CardImage className="CardImage">
           <Image
             src={image}
-            layout="fill"
-            objectFit="cover"
             alt={name}
+            fill
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectFit: "cover" }}
             loading="lazy"
           />
         </CardImage>
