@@ -72,11 +72,7 @@
     ]
   },
   "include": [
-    "next-env.d.ts",
-    "src/next-env.d.ts",
-    "src/declare.d.ts",
     "./src",
-    "./app",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],

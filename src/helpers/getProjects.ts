@@ -49,7 +49,9 @@ function getMdProjectDetails(filePath: string): Project {
 
   return {
     ...(data as Project),
-    image: replaceImagePath(data.image, path.dirname(filePath)),
+    image: data.image
+      ? replaceImagePath(data.image, path.dirname(filePath))
+      : "",
   };
 }
 
@@ -66,7 +68,9 @@ function readMarkdownFile(filePath: string) {
     content: contentWithUpdatedPaths,
     project: {
       ...(data as Project),
-      image: replaceImagePath(data.image, path.dirname(filePath)),
+      image: data.image
+        ? replaceImagePath(data.image, path.dirname(filePath))
+        : "",
     },
   };
 }

@@ -53,14 +53,16 @@ function ProjectCard({
     <article className="group flex h-full min-h-100 w-full flex-col">
       <Link href={linkHref}>
         <div className="CardImage relative h-75 w-full overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
-          <Image
-            src={image}
-            alt={name}
-            fill
-            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            style={{ objectFit: "cover" }}
-            loading="lazy"
-          />
+          {image ? (
+            <Image
+              src={image}
+              alt={name}
+              fill
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover" }}
+              loading="lazy"
+            />
+          ) : null}
         </div>
       </Link>
       <div className="relative w-full flex-1 py-4">
