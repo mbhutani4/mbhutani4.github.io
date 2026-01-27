@@ -2,11 +2,17 @@ import styled from "@emotion/styled";
 import { IconButton } from "components/Button";
 import IconDown from "icons/Down";
 import { Color } from "styles";
+import { Social } from "./Social";
 
 export default function Footer(): React.ReactElement {
   return (
     <Container>
-      © Mahima Bhutani • <a href="mailto:mahima@bhutani.design">Contact</a>
+      <Content>
+        <span style={{ fontSize: "0.8em" }}>
+          © 2018-{new Date().getFullYear()} Mahima Bhutani
+        </span>
+        <Social />
+      </Content>
       <ScrollToTop
         onClick={() => {
           window.scrollTo({ top: 0 });
@@ -25,6 +31,13 @@ const Container = styled.footer`
   margin: auto;
   text-align: center;
   border-top: 1px solid ${Color.Border};
+`;
+
+const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 `;
 
 const ScrollToTop = styled(IconButton)`

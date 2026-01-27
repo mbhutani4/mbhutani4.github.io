@@ -56,7 +56,7 @@ function ProjectCard({
             layout="fill"
             objectFit="cover"
             alt={name}
-            loading="eager"
+            loading="lazy"
           />
         </CardImage>
       </Link>

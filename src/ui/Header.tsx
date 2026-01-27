@@ -1,13 +1,6 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
-
-import IconMail from "icons/Mail";
-import IconLinkedIn from "icons/LinkedIn";
-import IconResume from "icons/Resume";
 import { Color } from "styles";
-
-import type { PropsWithChildren } from "react";
-import type { LinkProps } from "next/link";
+import { Social } from "./Social";
 
 export default function Header(): React.ReactElement {
   return (
@@ -15,33 +8,9 @@ export default function Header(): React.ReactElement {
       <LogoTitle href="/">Mahima Bhutani</LogoTitle>
 
       <nav>
-        <NavBarList>
-          <NavItemWithLink href="/MahimaBhutani_Resume.pdf">
-            <IconResume />
-            <span className="linkText">Resume</span>
-          </NavItemWithLink>
-          <NavItemWithLink href="https://www.linkedin.com/in/mahimabhutani/">
-            <IconLinkedIn />
-            <span className="linkText">LinkedIn</span>
-          </NavItemWithLink>
-          <NavItemWithLink href="mailto:mahima@bhutani.design">
-            <IconMail />
-            <span className="linkText">Mail</span>
-          </NavItemWithLink>
-        </NavBarList>
+        <Social />
       </nav>
     </HeadBar>
-  );
-}
-
-function NavItemWithLink({
-  children,
-  ...linkProps
-}: PropsWithChildren<LinkProps>): React.ReactElement {
-  return (
-    <NavBarItem>
-      <Link {...linkProps}>{children}</Link>
-    </NavBarItem>
   );
 }
 
@@ -91,44 +60,4 @@ const LogoTitle = styled.a`
   color: ${Color.Text_Primary};
   text-decoration: none;
   cursor: pointer;
-`;
-
-const NavBarList = styled.ul`
-  display: flex;
-  align-items: center;
-  list-style: none;
-  font-size: 0.9rem;
-`;
-
-const NavBarItem = styled.li`
-  margin: 0 0 0 1em;
-
-  &,
-  a {
-    color: ${Color.Text_Secondary};
-    fill: ${Color.Text_Secondary};
-  }
-
-  a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  &:hover,
-  a:hover {
-    color: ${Color.Text_Primary};
-    fill: ${Color.Text_Primary};
-  }
-
-  svg {
-    width: 1em;
-    height: 1em;
-    margin: 0 0.5em;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
 `;
