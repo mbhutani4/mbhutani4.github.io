@@ -37,7 +37,7 @@ function NavItemWithLink({
     <li>
       <Link
         {...linkProps}
-        className="flex items-center justify-start gap-2 text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] [&>svg]:transition-transform [&>svg]:hover:scale-110"
+        className="flex items-center justify-start gap-2 text-(--color-text-secondary) transition-colors hover:text-text-primary [&>svg]:transition-transform [&>svg]:hover:scale-110"
       >
         {children}
       </Link>

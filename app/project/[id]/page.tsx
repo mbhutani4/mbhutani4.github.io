@@ -72,10 +72,7 @@ function HeroImage({
     >
       <div className="absolute -bottom-6 left-0 right-0 flex justify-center">
         {tags.map((tag) => (
-          <Tag
-            key={tag}
-            className="cursor-default bg-[var(--color-background-primary)]"
-          >
+          <Tag key={tag} className="cursor-default bg-background-primary">
             {capitalise(tag)}
           </Tag>
         ))}

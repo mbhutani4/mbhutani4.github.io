@@ -12,7 +12,7 @@ export default function Markdown({
 }) {
   return (
     <section
-      className="bg-(--color-background-primary) text-(--color-text-secondary)"
+      className="bg-background-primary text-(--color-text-secondary)"
       style={{ "--accent": project.accent } as CSSProperties}
     >
       <main className="markdown mx-auto max-w-3xl px-5 py-5 md:px-6">

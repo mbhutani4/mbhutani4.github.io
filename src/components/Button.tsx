@@ -14,7 +14,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className={cn(
         baseButtonClasses,
         "px-4 py-2",
-        "hover:bg-[var(--color-background-disabled)] hover:text-[var(--color-text-primary)]",
+        "hover:bg-background-disabled hover:text-text-primary",
         className,
       )}
       {...props}
@@ -39,7 +39,7 @@ export const ButtonOutline = forwardRef<HTMLButtonElement, ButtonProps>(
       className={cn(
         baseButtonClasses,
         "px-4 py-2",
-        "bg-transparent text-[var(--color-text-primary)] hover:bg-[var(--color-background-inverse)] hover:text-[var(--color-text-inverse)] focus:bg-[var(--color-background-disabled)] active:bg-[var(--color-background-primary)]",
+        "bg-transparent text-text-primary hover:bg-(--color-background-inverse) hover:text-(--color-text-inverse) focus:bg-background-disabled active:bg-background-primary",
         className,
       )}
       {...props}
