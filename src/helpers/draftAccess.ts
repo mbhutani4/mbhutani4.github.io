@@ -9,8 +9,13 @@ import "server-only";
  * Check if we're in development mode
  */
 export function isDevelopment(): boolean {
+  const isDraftTestingMode = process.env.DRAFT_TEST === "true";
+  if (isDraftTestingMode) {
+    return false;
+  }
+
   return (
-    process.env.NODE_ENV === "development" && process.env.DRAFT_TEST !== "true"
+    process.env.NODE_ENV === "development"
   );
 }
 
