@@ -79,6 +79,7 @@ export default async function ProjectPage({
   try {
     projectData = getProject(id);
   } catch (error) {
+    console.error(error)
     // Show 404 page for missing projects
     notFound();
   }
