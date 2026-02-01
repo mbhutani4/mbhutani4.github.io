@@ -16,24 +16,24 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps<"/project/[id]">): Promise<Metadata> {
-  const { project } = getProject((await params).id);
+  const projectData = getProject((await params).id);
   const siteName = "Mahima Bhutani";
   const domainUrl = "https://bhutani.design";
-  const imageUrl = project.image?.startsWith("http")
-    ? project.image
-    : project.image
-      ? `${domainUrl}${project.image}`
+  const imageUrl = projectData.image?.startsWith("http")
+    ? projectData.image
+    : projectData.image
+      ? `${domainUrl}${projectData.image}`
       : `${domainUrl}/images/profile.jpeg`;
 
   return {
-    title: `${project.name} | ${siteName}`,
-    description: project.description ?? "Portfolio of Mahima Bhutani.",
+    title: `${projectData.name} | ${siteName}`,
+    description: projectData.description ?? "Portfolio of Mahima Bhutani.",
     openGraph: {
-      title: project.name,
-      description: project.description ?? "Portfolio of Mahima Bhutani.",
+      title: projectData.name,
+      description: projectData.description ?? "Portfolio of Mahima Bhutani.",
       siteName,
-      url: `${domainUrl}/project/${project.id}`,
-      images: [{ url: imageUrl, alt: project.name }],
+      url: `${domainUrl}/project/${projectData.id}`,
+      images: [{ url: imageUrl, alt: projectData.name }],
       type: "website",
     },
   };
@@ -43,13 +43,13 @@ export default async function ProjectPage({
   params,
 }: PageProps<"/project/[id]">) {
   const { id } = await params;
-  const { project, content, next, prev } = getProject(id);
+  const projectData = getProject(id);
 
   return (
     <article>
-      <HeroImage project={project} />
-      <Markdown markdown={content} project={project} />
-      <Siblings next={next} prev={prev} />
+      <HeroImage project={projectData} />
+      <Markdown markdown={projectData.content} project={projectData} />
+      <Siblings next={projectData.next} prev={projectData.prev} />
     </article>
   );
 }

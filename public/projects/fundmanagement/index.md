@@ -3,8 +3,7 @@ id: fundmanagement
 name: Fund management
 image: ./hero.jpg
 description: An application which allow Fund managers to manage their funds, portfolios, daily tasks like NAv calculations and managing shareholder registries.
-accent:
-order: 4
+order: 6
 tags:
   - figma
   - sketch

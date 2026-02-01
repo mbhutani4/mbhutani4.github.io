@@ -3,7 +3,6 @@ id: compawnion
 name: Compawnion
 image: ./compawnion.jpg
 description: A platform through which the dog lovers who unfortunately can’t afford one could spend time with them.
-accent:
 order: 0
 tags:
   - desktop

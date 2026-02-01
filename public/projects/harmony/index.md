@@ -4,7 +4,7 @@ name: Harmony
 image: ./hero.jpg
 description: Design system. Coming Soon.
 accent: "#663399"
-order: 5
+order: 0
 tags:
   - design system
   - theme
