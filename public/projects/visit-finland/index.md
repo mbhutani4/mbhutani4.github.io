@@ -1,7 +1,7 @@
 ---
 id: visit-finland
 name: Visit Finland
-image: ./project.jpg
+image: ./vf-hero.jpg
 description: A travel and experience discovery platform for exploring Finland's unique destinations and attractions.
 order: 10
 tags:
@@ -19,7 +19,7 @@ published: false
 
 <!-- Describe what the project is about -->
 
-![Hero Image](./project.jpg)
+![Hero Image](./vf-hero.jpg)
 
 ## My Role
 

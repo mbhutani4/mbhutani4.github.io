@@ -30,7 +30,7 @@ export default function ProjectsClient({
   return (
     <div className="mt-4">
       {renderedFilterRow}
-      <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 animate-stagger">
+      <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 2xl:grid-cols-3 animate-stagger">
         {filteredProjects.map((project) => (
           <ProjectCard {...project} key={project.id} toggleTag={toggleTag} />
         ))}
