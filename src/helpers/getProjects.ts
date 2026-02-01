@@ -120,7 +120,10 @@ function getSiblingProjects(projectId: string): {
   const index = allProjects.findIndex((project) => project.id === projectId);
 
   if (index === -1) {
-    throw new Error(`Project not found in list: ${projectId}`);
+    return {
+      next: allProjects[maxIndex]!,
+      prev: allProjects[0]!,
+    }
   }
 
   const nextIndex = index < maxIndex ? index + 1 : 0;
