@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Markdown from "ui/Markdown";
 import Siblings from "ui/Siblings";
 import { getAllProjects, getProject } from "helpers/getProjects";
@@ -17,44 +18,61 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps<"/project/[id]">): Promise<Metadata> {
-  const projectData = getProject((await params).id);
-  const access = canAccessProject(projectData.published);
+  try {
+    const projectData = getProject((await params).id);
+    const access = canAccessProject(projectData.published);
 
-  if (!access.allowed) {
+    if (!access.allowed) {
+      return {
+        title: "Draft Project",
+        description: "This project is not publicly available",
+        robots: "noindex, nofollow",
+      };
+    }
+
+    const siteName = "Mahima Bhutani";
+    const domainUrl = "https://bhutani.design";
+    const imageUrl = projectData.image?.startsWith("http")
+      ? projectData.image
+      : projectData.image
+        ? `${domainUrl}${projectData.image}`
+        : `${domainUrl}/images/profile.jpeg`;
+
     return {
-      title: "Draft Project",
-      description: "This project is not publicly available",
-      robots: "noindex, nofollow",
+      title: `${projectData.name} | ${siteName}`,
+      description: projectData.description ?? "Portfolio of Mahima Bhutani.",
+      openGraph: {
+        title: projectData.name,
+        description: projectData.description ?? "Portfolio of Mahima Bhutani.",
+        siteName,
+        url: `${domainUrl}/project/${projectData.id}`,
+        images: [{ url: imageUrl, alt: projectData.name }],
+        type: "website",
+      },
+    };
+  } catch (error) {
+    // Return minimal metadata for 404 pages
+    return {
+      title: "Project Not Found",
+      description: "The requested project could not be found.",
+      robots: "noindex",
     };
   }
-
-  const siteName = "Mahima Bhutani";
-  const domainUrl = "https://bhutani.design";
-  const imageUrl = projectData.image?.startsWith("http")
-    ? projectData.image
-    : projectData.image
-      ? `${domainUrl}${projectData.image}`
-      : `${domainUrl}/images/profile.jpeg`;
-
-  return {
-    title: `${projectData.name} | ${siteName}`,
-    description: projectData.description ?? "Portfolio of Mahima Bhutani.",
-    openGraph: {
-      title: projectData.name,
-      description: projectData.description ?? "Portfolio of Mahima Bhutani.",
-      siteName,
-      url: `${domainUrl}/project/${projectData.id}`,
-      images: [{ url: imageUrl, alt: projectData.name }],
-      type: "website",
-    },
-  };
 }
 
 export default async function ProjectPage({
   params,
 }: PageProps<"/project/[id]">) {
   const { id } = await params;
-  const projectData = getProject(id);
+
+  let projectData;
+  try {
+    projectData = getProject(id);
+  } catch (error) {
+    // Show 404 page for missing projects
+    notFound();
+  }
+
   const draftInfo = getDraftInfo(projectData.published);
 
   return (
