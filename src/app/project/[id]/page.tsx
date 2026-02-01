@@ -99,7 +99,6 @@ export default async function ProjectPage({
     notFound();
   }
 
-  console.log("Project Data:", projectData, isProjectAuthenticated);
   // Check if project has a password (even if published)
   if (projectData.password && !isProjectAuthenticated) {
     return (

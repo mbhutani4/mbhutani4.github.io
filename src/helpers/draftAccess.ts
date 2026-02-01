@@ -58,16 +58,16 @@ export function canAccessProject(
 ): { allowed: boolean; reason?: string; requiresPassword?: boolean } {
   const inDev = isDevelopment();
   const isDraftProject = isDraft(published);
-
-  // Always allow in development
-  if (inDev) {
-    return { allowed: true };
-  }
-
+  
   // In production, check if draft
   if (isDraftProject) {
+    // Always allow in development
+    if (inDev) {
+      return { allowed: true };
+    }
+
     const draftPassword = process.env.DRAFT_PASSWORD;
-    console.log("Draft password is set:", draftPassword);
+    console.log("Draft password is set:", !!draftPassword);
 
     // If no password is configured, block access
     if (!draftPassword) {
