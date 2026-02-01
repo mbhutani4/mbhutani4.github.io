@@ -30,7 +30,7 @@ export default function ProjectsClient({
   return (
     <div className="mt-4">
       {renderedFilterRow}
-      <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 animate-stagger">
         {filteredProjects.map((project) => (
           <ProjectCard {...project} key={project.id} toggleTag={toggleTag} />
         ))}
@@ -50,9 +50,12 @@ function ProjectCard({
   const linkHref = "/project/" + id;
 
   return (
-    <article className="group flex h-full min-h-100 w-full flex-col rounded-lg overflow-hidden hover:shadow-2xl hover:border-accent active:shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-accent bg-background-primary border border-transparent hover:border-accent/30">
-      <Link href={linkHref} className="relative overflow-hidden flex-shrink-0">
-        <div className="CardImage relative h-75 w-full overflow-hidden rounded-t-lg transition-all duration-300 group-hover:scale-110 group-active:scale-105 group-active:brightness-110">
+    <article className="group flex h-full min-h-100 w-full flex-col rounded-xl overflow-hidden hover:shadow-2xl hover:border-accent active:shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-accent bg-background-primary border border-transparent hover:border-accent/30 relative">
+      {/* Decorative gradient overlay on hover */}
+      <div className="absolute inset-0 bg-linear-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-300 pointer-events-none rounded-xl"></div>
+
+      <Link href={linkHref} className="relative overflow-hidden shrink-0">
+        <div className="CardImage relative h-75 w-full overflow-hidden rounded-t-xl transition-all duration-300 group-hover:scale-110 group-active:scale-105 group-active:brightness-110">
           {image ? (
             <Image
               src={image}
@@ -65,7 +68,7 @@ function ProjectCard({
           ) : null}
         </div>
       </Link>
-      <div className="relative w-full flex-1 py-6 px-4">
+      <div className="relative w-full flex-1 py-6 px-4 flex flex-col z-10">
         <Link
           href={linkHref}
           className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -90,18 +93,18 @@ function ProjectCard({
           </Paragraph>
         ) : null}
         {tags.length > 0 ? (
-          <div className="max-w-full text-base mt-2">
+          <div className="max-w-full text-base mt-auto pt-2 border-t border-accent/10">
             <p className="sr-only">Tags for {name}:</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mt-3">
               {tags.map((tag) => (
                 <button
                   key={tag}
-                  className="px-3 py-1 text-(--color-text-secondary) transition-all duration-200 hover:text-accent hover:bg-accent/10 active:bg-accent active:text-white active:font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded text-sm border border-transparent hover:border-accent/50 active:border-accent"
+                  className="px-3 py-1 text-(--color-text-secondary) transition-all duration-200 hover:text-accent hover:bg-accent/10 active:bg-accent active:text-white active:font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded-full text-xs font-medium border border-accent/20 hover:border-accent/50 active:border-accent uppercase tracking-widest"
                   onClick={() => toggleTag(tag)}
                   aria-pressed="false"
                   title={`Filter by ${tag}`}
                 >
-                  #{capitalise(tag)}
+                  {capitalise(tag)}
                 </button>
               ))}
             </div>

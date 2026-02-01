@@ -38,11 +38,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Header />
-        <main
-          role="main"
-          id="main-content"
-          className="pt-24 focus:outline-none"
-        >
+        <main role="main" id="main-content" className="focus:outline-none">
           {children}
         </main>
         <Footer />

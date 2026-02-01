@@ -69,7 +69,7 @@ function HeroImage({
         backgroundImage: `url(${image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "60vh",
+        height: "70vh",
         minHeight: "400px",
       }}
       className="relative flex items-end justify-center pb-20"

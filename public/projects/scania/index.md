@@ -30,8 +30,6 @@ In an industrial setup, the employees had to access information about different 
 
 A Portal for helping people manage their work, view their upcoming tasks, track deliveries and their work and explore history of work done any time in past. This project was done for Master Thesis.
 
-<!-- <img src ="./3phaseapproach.jpg" alt> -->
-
 ## The 3 phase approach
 
 ![3phaseapproach](./3phaseapproach.jpg)
@@ -70,21 +68,6 @@ The design phase focused on building the dashboard solution according to the ana
 **High fidelity prototype** - The prototype was later used for usability testing. It was designed keeping company’s bootstrap in mind. The users were intrigued to see the designs and were excited to interact with the prototype on their own.
 
 ![High_Fidelity_Prototypes](./high_fidelity.jpg)
-
-<!--
-![Scania](./scania_Logistic_Company.jpg)
-
-### SOP
-
-![SOP](./Ipad_sop.jpg)
-
-### Details
-
-![Details](./Ipad_sop_details.jpg)
-
-### Documentation
-
-![Doc](./Ipad_documentation.jpg) -->
 
 #### Evaluate
 

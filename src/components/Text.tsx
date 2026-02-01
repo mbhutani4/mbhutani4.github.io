@@ -14,7 +14,7 @@ export function Heading({
   return (
     <Component
       className={cn(
-        "text-3xl font-bold text-text-primary leading-tight",
+        "text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight tracking-tight",
         className,
       )}
       {...props}
@@ -30,7 +30,7 @@ export function SubHeading({
   return (
     <Component
       className={cn(
-        "inline-block text-lg uppercase tracking-[0.125em] font-semibold",
+        "inline-block text-base md:text-lg uppercase tracking-[0.15em] font-semibold letter-spacing-wide",
         className,
       )}
       {...props}

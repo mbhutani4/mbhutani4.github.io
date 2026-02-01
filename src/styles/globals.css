@@ -219,14 +219,97 @@ h4 {
 @keyframes drop-top {
   from {
     top: -100px;
+    opacity: 0;
   }
   to {
     top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(205, 78, 0, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(205, 78, 0, 0.8);
   }
 }
 
 @layer utilities {
   .animate-drop-top {
     animation: drop-top 0.5s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-in;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s ease-out;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out;
+  }
+
+  /* Stagger animations for child elements */
+  .animate-stagger > * {
+    animation: fade-in-up 0.6s ease-out backwards;
+  }
+
+  .animate-stagger > *:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .animate-stagger > *:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .animate-stagger > *:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .animate-stagger > *:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .animate-stagger > *:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .animate-stagger > *:nth-child(n + 6) {
+    animation-delay: 0.6s;
   }
 }
