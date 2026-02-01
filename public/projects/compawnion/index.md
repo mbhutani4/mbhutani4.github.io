@@ -9,6 +9,7 @@ tags:
   - desktop
   - mobile
   - sketch
+password: cp0
 ---
 
 # Compawnion
