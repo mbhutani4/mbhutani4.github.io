@@ -7,6 +7,7 @@ import { Tag } from "components/Tag";
 import type { CSSProperties } from "react";
 import type { Project } from "helpers/typeDefinitions";
 import { capitalise } from "helpers/tags";
+import { canAccessProject, getDraftInfo } from "helpers/draftAccess";
 
 export function generateStaticParams() {
   const projects = getAllProjects();
@@ -17,6 +18,16 @@ export async function generateMetadata({
   params,
 }: PageProps<"/project/[id]">): Promise<Metadata> {
   const projectData = getProject((await params).id);
+  const access = canAccessProject(projectData.published);
+
+  if (!access.allowed) {
+    return {
+      title: "Draft Project",
+      description: "This project is not publicly available",
+      robots: "noindex, nofollow",
+    };
+  }
+
   const siteName = "Mahima Bhutani";
   const domainUrl = "https://bhutani.design";
   const imageUrl = projectData.image?.startsWith("http")
@@ -44,10 +55,18 @@ export default async function ProjectPage({
 }: PageProps<"/project/[id]">) {
   const { id } = await params;
   const projectData = getProject(id);
+  const draftInfo = getDraftInfo(projectData.published);
 
   return (
     <article>
       <HeroImage project={projectData} />
+      {draftInfo.isDraft && (
+        <div className="bg-yellow-500/10 border-b border-yellow-500/20 px-6 py-3">
+          <p className="text-sm text-yellow-700 dark:text-yellow-400 font-medium">
+            📝 This is a draft project and only visible in development mode
+          </p>
+        </div>
+      )}
       <Markdown markdown={projectData.content} project={projectData} />
       <Siblings next={projectData.next} prev={projectData.prev} />
     </article>

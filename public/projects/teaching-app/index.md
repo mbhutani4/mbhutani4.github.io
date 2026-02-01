@@ -2,6 +2,7 @@
 id: teaching-app
 name: Teaching app
 image: ./teaching_app.jpg
+published: true
 description: A mobile application which support students to look for teachers having expertise in their domains.
 accent: "#000080"
 order: 1

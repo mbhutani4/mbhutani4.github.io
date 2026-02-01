@@ -1,6 +1,7 @@
 ---
 id: scania
 name: Scania Logistics Portal
+published: true
 image: ./scania_Logistic_Company.jpg
 description: A Portal for helping people manage their work, view their upcoming tasks, track deliveries and their work and explore history of work done any time in past.
 order: 3

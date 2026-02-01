@@ -1,6 +1,7 @@
 ---
 id: harmony
 name: Harmony
+published: true
 image: ./hero.jpg
 description: Design system. Coming Soon.
 accent: "#663399"

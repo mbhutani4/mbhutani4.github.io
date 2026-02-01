@@ -14,8 +14,28 @@ import {
 const projectsDir = path.join("public", "projects");
 
 /**
+ * Check if we're in development mode
+ */
+function isDev(): boolean {
+  return process.env.NODE_ENV !== "production";
+}
+
+/**
+ * Filter projects based on environment and publish status
+ * In dev: show all projects
+ * In production: only show published projects
+ */
+function filterByPublishStatus(projects: Project[]): Project[] {
+  if (isDev()) {
+    return projects;
+  }
+  return projects.filter((project) => project.published !== false);
+}
+
+/**
  * Gets all projects sorted by order (descending)
  * Results are cached for performance
+ * Drafts are hidden in production
  */
 export function getAllProjects(): Project[] {
   const cwd = process.cwd();
@@ -33,14 +53,19 @@ export function getAllProjects(): Project[] {
     })
     .filter((project): project is Project => project !== null);
 
+  // Filter by publish status
+  const filtered = filterByPublishStatus(projects);
+
   // Sort by order descending, handling undefined order values
-  const sorted = projects.sort(({ order: a = 0 }, { order: b = 0 }) => b - a);
+  const sorted = filtered.sort(({ order: a = 0 }, { order: b = 0 }) => b - a);
 
   return sorted;
 }
 
 /**
  * Gets a single project by ID with content and navigation siblings
+ * In production, draft projects are only accessible directly (not in lists)
+ * To fully restrict draft access in production, use getProjectIfPublished instead
  */
 export function getProject(projectId: string): ParsedProject {
   const projectFilePath = path.join(
@@ -65,6 +90,22 @@ export function getProject(projectId: string): ParsedProject {
   };
 
   return result;
+}
+
+/**
+ * Gets a project only if it's published (or in dev mode)
+ * Throws error if project is draft in production
+ */
+export function getProjectIfPublished(projectId: string): ParsedProject {
+  const project = getProject(projectId);
+
+  if (!isDev() && project.published === false) {
+    throw new Error(
+      `Project is still in draft: ${projectId}. Not available in production.`,
+    );
+  }
+
+  return project;
 }
 
 /**
@@ -126,6 +167,7 @@ function readMarkdownFile(filePath: string): {
     ...(metadata.accent && { accent: metadata.accent }),
     ...(metadata.tags && { tags: metadata.tags }),
     ...(metadata.order !== undefined && { order: metadata.order }),
+    ...(metadata.published !== undefined && { published: metadata.published }),
   };
 
   return {
@@ -161,6 +203,7 @@ function getMdProjectDetails(filePath: string): Project {
     ...(metadata.accent && { accent: metadata.accent }),
     ...(metadata.tags && { tags: metadata.tags }),
     ...(metadata.order !== undefined && { order: metadata.order }),
+    ...(metadata.published !== undefined && { published: metadata.published }),
   };
 }
 

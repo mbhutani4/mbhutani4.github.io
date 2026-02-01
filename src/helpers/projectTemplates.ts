@@ -15,7 +15,16 @@ export interface ProjectAuthorConfig extends Partial<ProjectMetadata> {
 export function generateProjectFrontmatter(
   metadata: ProjectAuthorConfig,
 ): string {
-  const { id, name, image, description, accent, tags, order = 0 } = metadata;
+  const {
+    id,
+    name,
+    image,
+    description,
+    accent,
+    tags,
+    order = 0,
+    published = false,
+  } = metadata;
 
   const frontmatter = [
     `id: ${id}`,
@@ -24,6 +33,7 @@ export function generateProjectFrontmatter(
     description ? `description: ${description}` : null,
     accent ? `accent: "${accent}"` : null,
     `order: ${order}`,
+    `published: ${published}`,
   ]
     .filter(Boolean)
     .join("\n");
@@ -122,6 +132,10 @@ export function validateProjectConfig(config: Partial<ProjectAuthorConfig>): {
 
   if (config.accent && !/^#?[0-9a-fA-F]{6}$/.test(config.accent)) {
     errors.push("accent must be a valid hex color code");
+  }
+
+  if (config.published !== undefined && typeof config.published !== "boolean") {
+    errors.push("published must be a boolean");
   }
 
   return {

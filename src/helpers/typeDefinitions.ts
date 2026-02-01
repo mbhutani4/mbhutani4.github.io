@@ -7,10 +7,12 @@ export interface Project {
   logo?: string;
   accent?: string;
   tags?: string[];
+  published?: boolean; // Draft status - false by default
 }
 
 export interface ProjectMetadata extends Omit<Project, "image"> {
   image?: string; // In metadata, image is optional before processing
+  published?: boolean; // Draft status - false by default
 }
 
 export interface ParsedProject extends Project {
@@ -47,6 +49,10 @@ export function validateProjectMetadata(
     if (!Array.isArray(obj.tags)) return false;
     if (!obj.tags.every((tag) => typeof tag === "string")) return false;
   }
+
+  // Validate published if present
+  if (obj.published !== undefined && typeof obj.published !== "boolean")
+    return false;
 
   return true;
 }

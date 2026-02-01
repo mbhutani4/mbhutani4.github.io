@@ -1,6 +1,7 @@
 ---
 id: fundmanagement
 name: Fund management
+published: true
 image: ./hero.jpg
 description: An application which allow Fund managers to manage their funds, portfolios, daily tasks like NAv calculations and managing shareholder registries.
 order: 6
