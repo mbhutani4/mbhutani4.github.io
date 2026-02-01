@@ -63,7 +63,8 @@ export function canAccessProject(
 ): { allowed: boolean; reason?: string; requiresPassword?: boolean } {
   const inDev = isDevelopment();
   const isDraftProject = isDraft(published);
-  
+  console.log({inDev, isDraftProject, draftPwd:!!process.env.DRAFT_PASSWORD })
+
   // In production, check if draft
   if (isDraftProject) {
     // Always allow in development
