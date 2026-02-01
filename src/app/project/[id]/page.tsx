@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import Markdown from "ui/Markdown";
 import Siblings from "ui/Siblings";
 import { getAllProjects, getProject } from "helpers/getProjects";
 import { HeroSection } from "components/Section";
 import { Tag } from "components/Tag";
+import { DraftPasswordPrompt } from "components/DraftPasswordPrompt";
 import type { CSSProperties } from "react";
 import type { Project } from "helpers/typeDefinitions";
 import { capitalise } from "helpers/tags";
 import { canAccessProject, getDraftInfo } from "helpers/draftAccess";
+import { DraftBanner } from "components/DraftBanner";
 
 export function generateStaticParams() {
   const projects = getAllProjects();
@@ -20,7 +23,7 @@ export async function generateMetadata({
 }: PageProps<"/project/[id]">): Promise<Metadata> {
   try {
     const projectData = getProject((await params).id);
-    const access = canAccessProject(projectData.published);
+    const access = canAccessProject(!!projectData.published);
 
     if (!access.allowed) {
       return {
@@ -64,6 +67,9 @@ export default async function ProjectPage({
   params,
 }: PageProps<"/project/[id]">) {
   const { id } = await params;
+  const cookieStore = await cookies();
+  const isDraftAuthenticated =
+    cookieStore.get("draft_authenticated")?.value === "true";
 
   let projectData;
   try {
@@ -73,18 +79,31 @@ export default async function ProjectPage({
     notFound();
   }
 
+  // Check access with authentication status from cookie
+  const access = canAccessProject(
+    !!projectData.published,
+    isDraftAuthenticated,
+  );
+
+  // If requires password but not authenticated, show password prompt
+  if (!access.allowed && access.requiresPassword) {
+    return <DraftPasswordPrompt projectId={id} />;
+  }
+
+  // If access denied, show 404
+  if (!access.allowed) {
+    notFound();
+  }
+
   const draftInfo = getDraftInfo(projectData.published);
 
   return (
     <article>
       <HeroImage project={projectData} />
-      {draftInfo.isDraft && (
-        <div className="bg-yellow-500/10 border-b border-yellow-500/20 px-6 py-3">
-          <p className="text-sm text-yellow-700 dark:text-yellow-400 font-medium">
-            📝 This is a draft project and only visible in development mode
-          </p>
-        </div>
-      )}
+      {draftInfo.isDraft ? (
+        <DraftBanner isVisible={draftInfo.isVisible} />
+      ) : null}
+
       <Markdown markdown={projectData.content} project={projectData} />
       <Siblings next={projectData.next} prev={projectData.prev} />
     </article>

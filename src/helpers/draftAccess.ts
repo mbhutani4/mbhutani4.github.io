@@ -1,3 +1,5 @@
+import "server-only";
+
 /**
  * Draft Protection Utilities
  * Provides functions to manage draft project access control
@@ -46,12 +48,12 @@ export function getDraftInfo(published?: boolean): {
 /**
  * Verifies draft access in production
  * Returns true if project should be accessible
- * Password parameter reserved for future authentication
+ * Supports password authentication for draft projects in production
  */
 export function canAccessProject(
-  published?: boolean,
-  _password?: string,
-): { allowed: boolean; reason?: string } {
+  published: boolean,
+  passwordValid?: boolean,
+): { allowed: boolean; reason?: string; requiresPassword?: boolean } {
   const inDev = isDevelopment();
   const isDraftProject = isDraft(published);
 
@@ -60,12 +62,30 @@ export function canAccessProject(
     return { allowed: true };
   }
 
-  // In production, only allow published projects
+  // In production, check if draft
   if (isDraftProject) {
-    // Could add password check here in the future
+    const draftPassword = process.env.DRAFT_PASSWORD;
+    console.log("Draft password is set:", draftPassword);
+
+    // If no password is configured, block access
+    if (!draftPassword) {
+      return {
+        allowed: false,
+        reason: "This project is still in draft and not publicly available",
+      };
+    }
+
+    // If password validity is provided (from API validation), use it
+
+    if (passwordValid) {
+      return { allowed: true };
+    }
+
+    // Password is configured but not validated
     return {
       allowed: false,
-      reason: "This project is still in draft and not publicly available",
+      reason: "This project requires a password to view",
+      requiresPassword: true,
     };
   }
 
