@@ -46,11 +46,11 @@ export default async function ProjectPage({
   const { project, content, next, prev } = getProject(id);
 
   return (
-    <>
+    <article>
       <HeroImage project={project} />
       <Markdown markdown={content} project={project} />
       <Siblings next={next} prev={prev} />
-    </>
+    </article>
   );
 }
 
@@ -61,21 +61,41 @@ function HeroImage({
   project: Project;
   style?: CSSProperties;
 }) {
-  const { image, tags = [] } = project;
+  const { image, tags = [], name } = project;
   return (
     <HeroSection
       style={{
         ...style,
         backgroundImage: `url(${image})`,
-        height: "70vh",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "60vh",
+        minHeight: "400px",
       }}
+      className="relative flex items-end justify-center pb-20"
+      aria-label={`Project: ${name}`}
     >
-      <div className="absolute -bottom-6 left-0 right-0 flex justify-center">
-        {tags.map((tag) => (
-          <Tag key={tag} className="cursor-default bg-background-primary">
-            {capitalise(tag)}
-          </Tag>
-        ))}
+      {/* Overlay for better text readability */}
+      <div
+        className="absolute inset-0 bg-black/20 dark:bg-black/40"
+        aria-hidden="true"
+      ></div>
+
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 flex-wrap p-6 z-10">
+        {tags.length > 0 && (
+          <>
+            <span className="sr-only">Tags: </span>
+            {tags.map((tag) => (
+              <Tag
+                key={tag}
+                className="cursor-default bg-background-primary hover:bg-background-primary hover:text-text-primary border-0"
+                aria-label={tag}
+              >
+                {capitalise(tag)}
+              </Tag>
+            ))}
+          </>
+        )}
       </div>
     </HeroSection>
   );

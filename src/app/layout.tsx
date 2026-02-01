@@ -29,13 +29,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-secon">
         <Suspense>
           <AnalyticsClient />
         </Suspense>
+        <a href="#main-content" className="sr-only focus:not-sr-only">
+          Skip to main content
+        </a>
         <Header />
-        <main>{children}</main>
+        <main
+          role="main"
+          id="main-content"
+          className="pt-24 focus:outline-none"
+        >
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -20,7 +20,7 @@ export default function ProjectsClient({
     return (
       <div className="mt-4">
         {renderedFilterRow}
-        <Paragraph>
+        <Paragraph role="status" aria-live="polite">
           No projects match the filters. Try with different filters.
         </Paragraph>
       </div>
@@ -50,9 +50,9 @@ function ProjectCard({
   const linkHref = "/project/" + id;
 
   return (
-    <article className="group flex h-full min-h-100 w-full flex-col">
-      <Link href={linkHref}>
-        <div className="CardImage relative h-75 w-full overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-105">
+    <article className="group flex h-full min-h-100 w-full flex-col rounded-lg overflow-hidden hover:shadow-2xl hover:border-accent active:shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-accent bg-background-primary border border-transparent hover:border-accent/30">
+      <Link href={linkHref} className="relative overflow-hidden flex-shrink-0">
+        <div className="CardImage relative h-75 w-full overflow-hidden rounded-t-lg transition-all duration-300 group-hover:scale-110 group-active:scale-105 group-active:brightness-110">
           {image ? (
             <Image
               src={image}
@@ -65,29 +65,47 @@ function ProjectCard({
           ) : null}
         </div>
       </Link>
-      <div className="relative w-full flex-1 py-4">
-        <Link href={linkHref}>
-          <Heading as="h3" className="text-2xl font-semibold">
+      <div className="relative w-full flex-1 py-6 px-4">
+        <Link
+          href={linkHref}
+          className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <Heading
+            as="h3"
+            className="text-2xl font-semibold hover:text-accent transition-colors group-active:text-accent"
+          >
             {name}
           </Heading>
         </Link>
         {description ? (
           <Paragraph className="max-w-full text-base">
-            {description} <Link href={linkHref}>Read more.</Link>
+            {description}{" "}
+            <Link
+              href={linkHref}
+              className="font-semibold text-accent hover:text-accent/80 active:text-accent transition-all duration-200 hover:underline active:underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded"
+            >
+              Read more
+            </Link>
+            .
           </Paragraph>
         ) : null}
         {tags.length > 0 ? (
-          <Paragraph className="max-w-full text-base">
-            {tags.map((tag) => (
-              <a
-                key={tag}
-                className="mr-2 cursor-pointer text-(--color-text-secondary) transition-colors hover:text-accent"
-                onClick={() => toggleTag(tag)}
-              >
-                #{capitalise(tag)}
-              </a>
-            ))}
-          </Paragraph>
+          <div className="max-w-full text-base mt-2">
+            <p className="sr-only">Tags for {name}:</p>
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <button
+                  key={tag}
+                  className="px-3 py-1 text-(--color-text-secondary) transition-all duration-200 hover:text-accent hover:bg-accent/10 active:bg-accent active:text-white active:font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded text-sm border border-transparent hover:border-accent/50 active:border-accent"
+                  onClick={() => toggleTag(tag)}
+                  aria-pressed="false"
+                  title={`Filter by ${tag}`}
+                >
+                  #{capitalise(tag)}
+                </button>
+              ))}
+            </div>
+          </div>
         ) : null}
       </div>
     </article>

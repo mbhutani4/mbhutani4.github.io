@@ -12,12 +12,12 @@ export default function Markdown({
 }) {
   return (
     <section
-      className="bg-background-primary text-(--color-text-secondary)"
+      className="bg-background-primary text-(--color-text-secondary) py-12 md:py-16"
       style={{ "--accent": project.accent } as CSSProperties}
     >
-      <main className="markdown mx-auto max-w-3xl px-5 py-5 md:px-6">
+      <article className="markdown mx-auto max-w-3xl px-6 md:px-8 lg:px-12">
         <ReactMarkdown remarkPlugins={[gfm]}>{markdown}</ReactMarkdown>
-      </main>
+      </article>
     </section>
   );
 }

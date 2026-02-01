@@ -7,11 +7,12 @@ import type { ReactElement } from "react";
 export function ScrollToTopButton(): ReactElement {
   return (
     <IconButton
-      className="fixed bottom-4 right-4 h-auto w-auto rounded-full bg-(--color-background-secondary) p-2 text-text-primary shadow-md [&>svg]:h-4 [&>svg]:w-4 [&>svg]:rotate-180 [&>svg]:fill-current"
+      className="fixed bottom-4 right-4 h-auto w-auto rounded-full bg-(--color-background-secondary) p-2 text-text-primary shadow-md hover:bg-background-disabled [&>svg]:h-4 [&>svg]:w-4 [&>svg]:rotate-180 [&>svg]:fill-current"
       onClick={() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }}
-      title={"Scroll to top"}
+      title="Scroll to top"
+      aria-label="Scroll to top"
     >
       <IconDown />
     </IconButton>

@@ -50,12 +50,17 @@ export function Filters({
   className,
 }: FilterRowProps): ReactElement {
   return (
-    <div className={cn("my-4 flex flex-wrap", className)}>
+    <div
+      className={cn("my-4 flex flex-wrap", className)}
+      role="group"
+      aria-label="Filter projects by tags"
+    >
       {tags.map((tag) => (
         <Tag
           key={tag}
           onClick={() => toggleTag(tag)}
           data-active={isContainTag(selectedTags, tag)}
+          aria-pressed={isContainTag(selectedTags, tag) ? "true" : "false"}
         >
           {capitalise(tag)}
         </Tag>

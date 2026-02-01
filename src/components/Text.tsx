@@ -13,7 +13,10 @@ export function Heading({
 }: TextProps<"h1">) {
   return (
     <Component
-      className={cn("text-3xl font-bold text-text-primary", className)}
+      className={cn(
+        "text-3xl font-bold text-text-primary leading-tight",
+        className,
+      )}
       {...props}
     />
   );
@@ -27,7 +30,7 @@ export function SubHeading({
   return (
     <Component
       className={cn(
-        "inline-block text-lg uppercase tracking-[0.125em]",
+        "inline-block text-lg uppercase tracking-[0.125em] font-semibold",
         className,
       )}
       {...props}
@@ -42,7 +45,10 @@ export function Paragraph({
 }: TextProps<"p">) {
   return (
     <Component
-      className={cn("my-4 max-w-[40em] text-text-secondary", className)}
+      className={cn(
+        "my-4 max-w-[40em] text-text-secondary leading-relaxed",
+        className,
+      )}
       {...props}
     />
   );

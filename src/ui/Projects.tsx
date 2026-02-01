@@ -11,8 +11,10 @@ export default function Projects({
 }): ReactElement {
   return (
     <Section id="projects" className="bg-background-primary">
-      <SubHeading>Projects</SubHeading>
-      <ProjectsClient projects={projects} />
+      <div className="max-w-6xl mx-auto">
+        <SubHeading>Projects</SubHeading>
+        <ProjectsClient projects={projects} />
+      </div>
     </Section>
   );
 }

@@ -34,16 +34,16 @@
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-accent: #e3702a;
+    --color-accent: #f0883d;
     --color-text-primary: var(--grey-050);
     --color-text-secondary: var(--grey-100);
-    --color-text-disabled: var(--grey-200);
+    --color-text-disabled: var(--grey-300);
     --color-text-inverse: var(--grey-800);
     --color-background-primary: var(--grey-800);
     --color-background-secondary: var(--grey-900);
     --color-background-disabled: var(--grey-600);
     --color-background-inverse: var(--grey-100);
-    --color-border: var(--grey-500);
+    --color-border: var(--grey-600);
   }
 }
 

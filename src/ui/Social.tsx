@@ -7,19 +7,28 @@ import Link, { LinkProps } from "next/link";
 export function Social(): ReactNode {
   return (
     <ul className="flex list-none items-center gap-4 text-sm md:text-base">
-      <NavItemWithLink href="/MahimaBhutani_Resume.pdf">
+      <NavItemWithLink
+        href="/MahimaBhutani_Resume.pdf"
+        aria-label="Download resume"
+      >
         <div className="h-4 w-4 fill-current flex items-center justify-center">
           <IconResume />
         </div>
         <span className="linkText max-[550px]:hidden">Resume</span>
       </NavItemWithLink>
-      <NavItemWithLink href="https://www.linkedin.com/in/mahimabhutani/">
+      <NavItemWithLink
+        href="https://www.linkedin.com/in/mahimabhutani/"
+        aria-label="LinkedIn profile"
+      >
         <div className="h-4 w-4 fill-current flex items-center justify-center">
           <IconLinkedIn />
         </div>
         <span className="linkText max-[550px]:hidden">LinkedIn</span>
       </NavItemWithLink>
-      <NavItemWithLink href="mailto:mahima@bhutani.design">
+      <NavItemWithLink
+        href="mailto:mahima@bhutani.design"
+        aria-label="Send email to Mahima"
+      >
         <div className="h-4 w-4 fill-current flex items-center justify-center">
           <IconMail />
         </div>
@@ -37,7 +46,7 @@ function NavItemWithLink({
     <li>
       <Link
         {...linkProps}
-        className="flex items-center justify-start gap-2 text-(--color-text-secondary) transition-colors hover:text-text-primary [&>svg]:transition-transform [&>svg]:hover:scale-110"
+        className="flex items-center justify-start gap-2 text-(--color-text-secondary) transition-colors hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent rounded [&>svg]:transition-transform [&>svg]:hover:scale-110"
       >
         {children}
       </Link>
