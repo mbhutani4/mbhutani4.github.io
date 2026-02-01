@@ -8,11 +8,13 @@ export interface Project {
   accent?: string;
   tags?: string[];
   published?: boolean; // Draft status - false by default
+  password?: string; // Project-specific password protection
 }
 
 export interface ProjectMetadata extends Omit<Project, "image"> {
   image?: string; // In metadata, image is optional before processing
   published?: boolean; // Draft status - false by default
+  password?: string; // Project-specific password protection
 }
 
 export interface ParsedProject extends Project {
@@ -52,6 +54,10 @@ export function validateProjectMetadata(
 
   // Validate published if present
   if (obj.published !== undefined && typeof obj.published !== "boolean")
+    return false;
+
+  // Validate password if present
+  if (obj.password !== undefined && typeof obj.password !== "string")
     return false;
 
   return true;

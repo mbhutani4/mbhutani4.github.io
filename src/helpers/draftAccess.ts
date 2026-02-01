@@ -9,7 +9,9 @@ import "server-only";
  * Check if we're in development mode
  */
 export function isDevelopment(): boolean {
-  return process.env.NODE_ENV !== "production";
+  return (
+    process.env.NODE_ENV === "development" && process.env.DRAFT_TEST !== "true"
+  );
 }
 
 /**

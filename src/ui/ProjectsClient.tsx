@@ -45,14 +45,30 @@ function ProjectCard({
   image,
   description,
   tags = [],
+  published,
   toggleTag,
 }: Project & { toggleTag: (tag: string) => void }): ReactElement {
   const linkHref = "/project/" + id;
+  const isDraft = published !== true;
 
   return (
     <article className="group flex h-full min-h-100 w-full flex-col rounded-xl overflow-hidden hover:shadow-2xl hover:border-accent active:shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-accent bg-background-primary border border-transparent hover:border-accent/30 relative">
       {/* Decorative gradient overlay on hover */}
       <div className="absolute inset-0 bg-linear-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-300 pointer-events-none rounded-xl"></div>
+
+      {/* Status badges */}
+
+      {isDraft && (
+        <div className="absolute top-3 right-3 z-20 flex gap-2 flex-wrap justify-end">
+          <div
+            className="bg-yellow-500/90 text-yellow-900 text-xs font-semibold px-2 py-1 rounded"
+            title="This is a draft project"
+            aria-label="Draft project"
+          >
+            📝 Draft
+          </div>
+        </div>
+      )}
 
       <Link href={linkHref} className="relative overflow-hidden shrink-0">
         <div className="CardImage relative h-75 w-full overflow-hidden rounded-t-xl transition-all duration-300 group-hover:scale-110 group-active:scale-105 group-active:brightness-110">

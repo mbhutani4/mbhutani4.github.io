@@ -168,6 +168,7 @@ function readMarkdownFile(filePath: string): {
     ...(metadata.tags && { tags: metadata.tags }),
     ...(metadata.order !== undefined && { order: metadata.order }),
     ...(metadata.published !== undefined && { published: metadata.published }),
+    ...(metadata.password !== undefined && { password: metadata.password }),
   };
 
   return {

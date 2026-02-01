@@ -7,11 +7,13 @@ import { getAllProjects, getProject } from "helpers/getProjects";
 import { HeroSection } from "components/Section";
 import { Tag } from "components/Tag";
 import { DraftPasswordPrompt } from "components/DraftPasswordPrompt";
+import { ProjectPasswordPrompt } from "components/ProjectPasswordPrompt";
 import type { CSSProperties } from "react";
 import type { Project } from "helpers/typeDefinitions";
 import { capitalise } from "helpers/tags";
 import { canAccessProject, getDraftInfo } from "helpers/draftAccess";
 import { DraftBanner } from "components/DraftBanner";
+import { ProjectProtectedBanner } from "components/ProjectProtectedBanner";
 
 export function generateStaticParams() {
   const projects = getAllProjects();
@@ -70,6 +72,8 @@ export default async function ProjectPage({
   const cookieStore = await cookies();
   const isDraftAuthenticated =
     cookieStore.get("draft_authenticated")?.value === "true";
+  const isProjectAuthenticated =
+    cookieStore.get(`project_auth_${id}`)?.value === "true";
 
   let projectData;
   try {
@@ -79,13 +83,13 @@ export default async function ProjectPage({
     notFound();
   }
 
-  // Check access with authentication status from cookie
+  // Check draft access first
   const access = canAccessProject(
     !!projectData.published,
     isDraftAuthenticated,
   );
 
-  // If requires password but not authenticated, show password prompt
+  // If requires password but not authenticated, show draft password prompt
   if (!access.allowed && access.requiresPassword) {
     return <DraftPasswordPrompt projectId={id} />;
   }
@@ -95,6 +99,14 @@ export default async function ProjectPage({
     notFound();
   }
 
+  console.log("Project Data:", projectData, isProjectAuthenticated);
+  // Check if project has a password (even if published)
+  if (projectData.password && !isProjectAuthenticated) {
+    return (
+      <ProjectPasswordPrompt projectId={id} projectName={projectData.name} />
+    );
+  }
+
   const draftInfo = getDraftInfo(projectData.published);
 
   return (
@@ -102,6 +114,9 @@ export default async function ProjectPage({
       <HeroImage project={projectData} />
       {draftInfo.isDraft ? (
         <DraftBanner isVisible={draftInfo.isVisible} />
+      ) : null}
+      {projectData.password && isProjectAuthenticated ? (
+        <ProjectProtectedBanner projectId={id} />
       ) : null}
 
       <Markdown markdown={projectData.content} project={projectData} />
