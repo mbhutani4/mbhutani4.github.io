@@ -41,7 +41,7 @@ export function getAllProjects(): Project[] {
   const cwd = process.cwd();
   const cachePath = path.join(cwd, projectsDir);
 
-  const filePaths = getAllMarkdownFilePaths(cachePath);
+  const filePaths = getAllMarkdownFilePaths(cachePath);  
   const projects = filePaths
     .map((filePath) => {
       try {
