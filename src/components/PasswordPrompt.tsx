@@ -5,13 +5,24 @@ import { useRouter } from "next/navigation";
 import { HeroSection } from "./Section";
 import { Paragraph } from "./Text";
 
-export function ProjectPasswordPrompt({
-  projectId,
-  projectName,
-}: {
+export type PasswordPromptProps = {
+  title: string;
+  description: string;
+  /** Server endpoint that validates the password and sets the auth cookie. */
+  endpoint: "/api/validate-draft-password" | "/api/validate-project-password";
   projectId: string;
-  projectName: string;
-}) {
+  submitLabel?: string;
+  footer?: string;
+};
+
+export function PasswordPrompt({
+  title,
+  description,
+  endpoint,
+  projectId,
+  submitLabel = "View Project",
+  footer,
+}: PasswordPromptProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,7 +35,7 @@ export function ProjectPasswordPrompt({
 
     try {
       // Call server API to validate password (never exposed to client)
-      const response = await fetch("/api/validate-project-password", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password, projectId }),
@@ -50,11 +61,8 @@ export function ProjectPasswordPrompt({
     <HeroSection className="flex flex-col items-center justify-center min-h-[50vh] gap-8 px-6 py-12">
       <div className="max-w-md w-full space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold">Protected Project</h1>
-          <Paragraph className="text-text-secondary">
-            <strong>{projectName}</strong> is password protected. Please enter
-            the password to view it.
-          </Paragraph>
+          <h1 className="text-3xl font-bold">{title}</h1>
+          <Paragraph className="text-text-secondary">{description}</Paragraph>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -73,12 +81,19 @@ export function ProjectPasswordPrompt({
               placeholder="Enter password"
               disabled={isSubmitting}
               autoFocus
+              autoComplete="current-password"
+              aria-invalid={error ? true : undefined}
+              aria-describedby={error ? "password-error" : undefined}
               className="w-full px-4 py-2 border border-text-secondary/30 rounded-lg bg-background-primary text-text-primary placeholder-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-text-primary/20 disabled:opacity-50"
             />
           </div>
 
           {error && (
-            <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+            <div
+              id="password-error"
+              role="alert"
+              className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg"
+            >
               <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
             </div>
           )}
@@ -88,13 +103,13 @@ export function ProjectPasswordPrompt({
             disabled={isSubmitting || !password}
             className="w-full px-4 py-2 bg-text-primary text-background-primary rounded-lg font-medium hover:bg-text-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {isSubmitting ? "Verifying..." : "View Project"}
+            {isSubmitting ? "Verifying..." : submitLabel}
           </button>
         </form>
 
-        <p className="text-xs text-text-secondary text-center">
-          This project requires a password to view.
-        </p>
+        {footer ? (
+          <p className="text-xs text-text-secondary text-center">{footer}</p>
+        ) : null}
       </div>
     </HeroSection>
   );

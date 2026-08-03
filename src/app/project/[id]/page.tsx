@@ -5,8 +5,8 @@ import Markdown from "ui/Markdown";
 import Siblings from "ui/Siblings";
 import ProjectHero from "ui/ProjectHero";
 import { getAllProjects, getProject } from "helpers/getProjects";
-import { DraftPasswordPrompt } from "components/DraftPasswordPrompt";
-import { ProjectPasswordPrompt } from "components/ProjectPasswordPrompt";
+import { getProjectPassword } from "config/projectSecrets";
+import { PasswordPrompt } from "components/PasswordPrompt";
 import { canAccessProject, getDraftInfo } from "helpers/draftAccess";
 import { DraftBanner } from "components/DraftBanner";
 import { ProjectProtectedBanner } from "components/ProjectProtectedBanner";
@@ -80,26 +80,63 @@ export default async function ProjectPage({
     notFound();
   }
 
-  // Check draft access first
-  const access = canAccessProject(
-    !!projectData.published,
-    isDraftAuthenticated,
-  );
+  const projectPassword = getProjectPassword(id);
 
-  // If requires password but not authenticated, show draft password prompt
-  if (!access.allowed && access.requiresPassword) {
-    return <DraftPasswordPrompt projectId={id} />;
-  }
+  // Draft access: the site-level (master) password, or the project's own
+  // password, both count as valid authentication.
+  const hasProjectAuth = !!projectPassword && isProjectAuthenticated;
+  const hasValidAuth = isDraftAuthenticated || hasProjectAuth;
 
-  // If access denied, show 404
+  const access = canAccessProject(!!projectData.published, hasValidAuth);
+
+  // Unauthenticated draft (or draft carrying its own password):
+  // show a single password prompt, never a chain of prompts.
   if (!access.allowed) {
+    if (projectPassword && !isProjectAuthenticated) {
+      return (
+        <PasswordPrompt
+          title="Protected Project"
+          description={`${projectData.name} is password protected. Please enter the password to view it.`}
+          endpoint="/api/validate-project-password"
+          projectId={id}
+          footer="This project requires a password to view."
+        />
+      );
+    }
+
+    if (access.requiresPassword) {
+      return (
+        <PasswordPrompt
+          title="Draft Project"
+          description="This project is still in draft. Please enter the password to view it."
+          endpoint="/api/validate-draft-password"
+          projectId={id}
+          footer="This is a password-protected draft project."
+        />
+      );
+    }
+
+    // Access denied with no password available
     notFound();
   }
 
-  // Check if project has a password (even if published)
-  if (projectData.password && !isProjectAuthenticated) {
+  // Published project with its own password.
+  // The site-level master password also grants access here, matching the
+  // validation API.
+  if (
+    projectData.published === true &&
+    projectPassword &&
+    !isProjectAuthenticated &&
+    !isDraftAuthenticated
+  ) {
     return (
-      <ProjectPasswordPrompt projectId={id} projectName={projectData.name} />
+      <PasswordPrompt
+        title="Protected Project"
+        description={`${projectData.name} is password protected. Please enter the password to view it.`}
+        endpoint="/api/validate-project-password"
+        projectId={id}
+        footer="This project requires a password to view."
+      />
     );
   }
 
@@ -108,11 +145,10 @@ export default async function ProjectPage({
   return (
     <article>
       <ProjectHero project={projectData} />
-      {draftInfo.isDraft ? (
-        <DraftBanner isVisible={draftInfo.isVisible} />
-      ) : null}
-      {projectData.password && isProjectAuthenticated ? (
+      {projectPassword && isProjectAuthenticated ? (
         <ProjectProtectedBanner projectId={id} />
+      ) : draftInfo.isDraft ? (
+        <DraftBanner isVisible={draftInfo.isVisible} />
       ) : null}
 
       <Markdown markdown={projectData.content} project={projectData} />

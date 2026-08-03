@@ -5,16 +5,15 @@ image: ./vf-hero.jpg
 description: Visit Finland, operated by the Finnish Tourism Board, set a goal of making the country the top choice for mindful travellers.
 role: Digital Product Designer
 client: Finnish Tourism Board
-year: "2022"
+year: 2022
 link: https://visitfinland.com
-order: 10
 tags:
   - design
   - web
   - mobile
   - research
   - figma
-published: false
+published: true
 ---
 
 # Visit Finland
@@ -51,12 +50,3 @@ The new strategy with six guiding principles was investigated: Stay real, Trigge
  
 ![Summary](./VF_Summary.gif)
   
-
-## Visit the Site
-
-[Visit Finland Website](https://visitfinland.com)
-
-## Example Section
-
-
-![Example](./example.jpg)

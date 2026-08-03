@@ -1,6 +1,18 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getProject } from "helpers/getProjects";
+import { getProjectPassword } from "config/projectSecrets";
+import {
+  AUTH_MAX_AGE,
+  clientIp,
+  isRateLimited,
+  resetRateLimit,
+  safeEqual,
+} from "helpers/passwordAuth";
+
+function rateScope(projectId: string): string {
+  return `project:${projectId}`;
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,10 +26,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get the project to check its password
-    let project;
+    const ip = clientIp(request);
+    if (isRateLimited(ip, rateScope(projectId))) {
+      return NextResponse.json(
+        { valid: false, error: "Too many attempts. Please try again later." },
+        { status: 429 },
+      );
+    }
+
+    // Ensure the project exists (returns 404 for unknown IDs)
     try {
-      project = getProject(projectId);
+      getProject(projectId);
     } catch (error) {
       return NextResponse.json(
         { valid: false, error: "Project not found" },
@@ -25,8 +44,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const projectPassword = getProjectPassword(projectId);
+
     // Check if project has a password
-    if (!project.password) {
+    if (!projectPassword) {
       return NextResponse.json(
         { valid: false, error: "This project is not password protected" },
         { status: 400 },
@@ -35,10 +56,11 @@ export async function POST(request: NextRequest) {
 
     // Check site-level master password first
     const masterPassword = process.env.DRAFT_PASSWORD;
-    const isMasterPassword = masterPassword && password === masterPassword;
+    const isMasterPassword =
+      masterPassword !== undefined && safeEqual(password, masterPassword);
 
     // Check project-specific password
-    const isProjectPassword = password === project.password;
+    const isProjectPassword = safeEqual(password, projectPassword);
 
     // Allow access if either password is correct
     const isValid = isMasterPassword || isProjectPassword;
@@ -50,6 +72,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    resetRateLimit(ip, rateScope(projectId));
+
     // Password is correct - set a project-specific cookie
     const response = NextResponse.json(
       {
@@ -60,12 +84,11 @@ export async function POST(request: NextRequest) {
       { status: 200 },
     );
 
-    // Set a secure, httpOnly cookie specific to this project
     response.cookies.set(`project_auth_${projectId}`, "true", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: AUTH_MAX_AGE,
       path: "/",
     });
 

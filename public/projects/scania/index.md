@@ -5,10 +5,9 @@ published: true
 image: ./scania_Logistic_Company.jpg
 description: A Portal for helping people manage their work, view their upcoming tasks, track deliveries and their work and explore history of work done any time in past.
 role: UX Researcher & Designer
-year: "2018"
+year: 2018
 client: Scania CV
 link: https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1362349&dswid=3480
-order: 3
 tags:
   - research
   - desktop

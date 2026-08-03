@@ -6,8 +6,7 @@ published: true
 description: A mobile application which support students to look for teachers having expertise in their domains.
 accent: "#000080"
 role: UX Designer & Researcher
-year: "2016"
-order: 1
+year: 2016
 tags:
   - mobile
   - sketch

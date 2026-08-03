@@ -1,12 +1,30 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import {
+  AUTH_MAX_AGE,
+  clientIp,
+  isRateLimited,
+  resetRateLimit,
+  safeEqual,
+} from "helpers/passwordAuth";
+
+const RATE_SCOPE = "draft";
 
 export async function POST(request: NextRequest) {
+  const ip = clientIp(request);
+
+  if (isRateLimited(ip, RATE_SCOPE)) {
+    return NextResponse.json(
+      { valid: false, error: "Too many attempts. Please try again later." },
+      { status: 429 },
+    );
+  }
+
   try {
     const body = await request.json();
-    const { password, projectId } = body;
+    const { password } = body;
 
-    if (!password) {
+    if (!password || typeof password !== "string") {
       return NextResponse.json(
         { valid: false, error: "Password is required" },
         { status: 400 },
@@ -23,33 +41,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate password
-    const isValid = password === draftPassword;
-
-    if (!isValid) {
+    // Validate password with a constant-time comparison
+    if (!safeEqual(password, draftPassword)) {
       return NextResponse.json(
         { valid: false, error: "Invalid password" },
         { status: 401 },
       );
     }
 
+    resetRateLimit(ip, RATE_SCOPE);
+
     // Password is correct - set a secure cookie
-    // The cookie will be used to remember authentication for subsequent requests
     const response = NextResponse.json(
-      {
-        valid: true,
-        message: "Password verified",
-        redirect: projectId ? `/project/${projectId}` : "/",
-      },
+      { valid: true, message: "Password verified" },
       { status: 200 },
     );
 
-    // Set a secure, httpOnly cookie that expires in 24 hours
     response.cookies.set("draft_authenticated", "true", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24, // 24 hours
+      maxAge: AUTH_MAX_AGE,
       path: "/",
     });
 
@@ -62,21 +74,14 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE(_request: NextRequest) {
-  try {
-    const response = NextResponse.json(
-      { success: true, message: "Authentication cleared" },
-      { status: 200 },
-    );
+export async function DELETE() {
+  const response = NextResponse.json(
+    { success: true, message: "Authentication cleared" },
+    { status: 200 },
+  );
 
-    // Clear the authentication cookie
-    response.cookies.delete("draft_authenticated");
+  // Clear the authentication cookie
+  response.cookies.delete("draft_authenticated");
 
-    return response;
-  } catch (error) {
-    return NextResponse.json(
-      { success: false, error: "Server error" },
-      { status: 500 },
-    );
-  }
+  return response;
 }

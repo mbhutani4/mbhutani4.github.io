@@ -9,16 +9,15 @@ export interface Project {
   tags?: string[];
   role?: string; // Designer's role in the project
   client?: string; // Client or company the project was for
-  year?: string; // Year of the project
+  year?: number; // Year of the project
   link?: string; // Live site / case study URL
   published?: boolean; // Draft status - false by default
-  password?: string; // Project-specific password protection
+  isProtected?: boolean; // Derived: true when the project has a password
 }
 
 export interface ProjectMetadata extends Omit<Project, "image"> {
   image?: string; // In metadata, image is optional before processing
   published?: boolean; // Draft status - false by default
-  password?: string; // Project-specific password protection
 }
 
 export interface ParsedProject extends Project {
@@ -53,7 +52,7 @@ export function validateProjectMetadata(
   // Optional presentation fields
   if (obj.role !== undefined && typeof obj.role !== "string") return false;
   if (obj.client !== undefined && typeof obj.client !== "string") return false;
-  if (obj.year !== undefined && typeof obj.year !== "string") return false;
+  if (obj.year !== undefined && typeof obj.year !== "number") return false;
   if (obj.link !== undefined && typeof obj.link !== "string") return false;
 
   // Validate tags if present
@@ -64,10 +63,6 @@ export function validateProjectMetadata(
 
   // Validate published if present
   if (obj.published !== undefined && typeof obj.published !== "boolean")
-    return false;
-
-  // Validate password if present
-  if (obj.password !== undefined && typeof obj.password !== "string")
     return false;
 
   return true;

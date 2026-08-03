@@ -10,6 +10,7 @@ import {
   validateProjectMetadata,
   ProjectValidationError,
 } from "./typeDefinitions";
+import { getProjectPassword } from "config/projectSecrets";
 
 const projectsDir = path.join("public", "projects");
 
@@ -57,7 +58,7 @@ export function getAllProjects(): Project[] {
   const filtered = filterByPublishStatus(projects);
 
   // Sort by order descending, handling undefined order values
-  const sorted = filtered.sort(({ order: a = 0 }, { order: b = 0 }) => b - a);
+  const sorted = filtered.sort((a, b) => ((b.order || 0) - (a.order || 0) || (+(b.year ||0 )- +(a.year || 0) )));
 
   return sorted;
 }
@@ -175,7 +176,7 @@ function readMarkdownFile(filePath: string): {
     ...(metadata.link && { link: metadata.link }),
     ...(metadata.order !== undefined && { order: metadata.order }),
     ...(metadata.published !== undefined && { published: metadata.published }),
-    ...(metadata.password !== undefined && { password: metadata.password }),
+    ...(getProjectPassword(metadata.id) && { isProtected: true }),
   };
 
   return {
@@ -214,6 +215,7 @@ function getMdProjectDetails(filePath: string): Project {
     ...(metadata.client && { client: metadata.client }),
     ...(metadata.year && { year: metadata.year }),
     ...(metadata.link && { link: metadata.link }),
+    ...(getProjectPassword(metadata.id) && { isProtected: true }),
     ...(metadata.order !== undefined && { order: metadata.order }),
     ...(metadata.published !== undefined && { published: metadata.published }),
   };

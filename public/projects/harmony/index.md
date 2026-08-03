@@ -6,10 +6,9 @@ image: ./hero.jpg
 description: Design system. Coming Soon.
 accent: "#663399"
 role: Design System Designer
-client: FA Solutions
-year: "2022"
+client: FA Solutions Oy
+year: 2022
 link: https://harmony.fasolutions.com/#/components
-order: 0
 tags:
   - design system
   - theme
