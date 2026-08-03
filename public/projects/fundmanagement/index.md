@@ -4,6 +4,10 @@ name: Fund management
 published: true
 image: ./hero.jpg
 description: An application which allow Fund managers to manage their funds, portfolios, daily tasks like NAv calculations and managing shareholder registries.
+role: Product Designer
+year: "2021"
+client: FA Solutions Oy
+link: https://fasolutions.com/features/fund-management/
 order: 6
 tags:
   - figma

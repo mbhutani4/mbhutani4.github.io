@@ -4,6 +4,9 @@ name: Compawnion
 published: true
 image: ./compawnion.jpg
 description: A platform through which the dog lovers who unfortunately can’t afford one could spend time with them.
+role: Product Designer
+year: "2016"
+link: https://youtu.be/_adTcYW48lU
 order: 0
 tags:
   - desktop

@@ -22,6 +22,10 @@ export function generateProjectFrontmatter(
     description,
     accent,
     tags,
+    role,
+    client,
+    year,
+    link,
     order = 0,
     published = false,
   } = metadata;
@@ -31,6 +35,10 @@ export function generateProjectFrontmatter(
     `name: ${name}`,
     image ? `image: ${image}` : "image: ./project.jpg",
     description ? `description: ${description}` : null,
+    role ? `role: ${role}` : null,
+    client ? `client: ${client}` : null,
+    year ? `year: ${year}` : null,
+    link ? `link: ${link}` : null,
     accent ? `accent: "${accent}"` : null,
     `order: ${order}`,
     `published: ${published}`,
@@ -132,6 +140,16 @@ export function validateProjectConfig(config: Partial<ProjectAuthorConfig>): {
 
   if (config.accent && !/^#?[0-9a-fA-F]{6}$/.test(config.accent)) {
     errors.push("accent must be a valid hex color code");
+  }
+
+  for (const field of ["role", "client", "year", "link"] as const) {
+    if (config[field] !== undefined && typeof config[field] !== "string") {
+      errors.push(`${field} must be a string`);
+    }
+  }
+
+  if (config.link && !/^https?:\/\/.+/.test(config.link)) {
+    errors.push("link must be a valid http(s) URL");
   }
 
   if (config.published !== undefined && typeof config.published !== "boolean") {

@@ -3,6 +3,10 @@ id: visit-finland
 name: Visit Finland
 image: ./vf-hero.jpg
 description: Visit Finland, operated by the Finnish Tourism Board, set a goal of making the country the top choice for mindful travellers.
+role: Digital Product Designer
+client: Finnish Tourism Board
+year: "2022"
+link: https://visitfinland.com
 order: 10
 tags:
   - design

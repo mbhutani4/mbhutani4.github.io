@@ -7,6 +7,10 @@ export interface Project {
   logo?: string;
   accent?: string;
   tags?: string[];
+  role?: string; // Designer's role in the project
+  client?: string; // Client or company the project was for
+  year?: string; // Year of the project
+  link?: string; // Live site / case study URL
   published?: boolean; // Draft status - false by default
   password?: string; // Project-specific password protection
 }
@@ -45,6 +49,12 @@ export function validateProjectMetadata(
   if (obj.image !== undefined && typeof obj.image !== "string") return false;
   if (obj.logo !== undefined && typeof obj.logo !== "string") return false;
   if (obj.accent !== undefined && typeof obj.accent !== "string") return false;
+
+  // Optional presentation fields
+  if (obj.role !== undefined && typeof obj.role !== "string") return false;
+  if (obj.client !== undefined && typeof obj.client !== "string") return false;
+  if (obj.year !== undefined && typeof obj.year !== "string") return false;
+  if (obj.link !== undefined && typeof obj.link !== "string") return false;
 
   // Validate tags if present
   if (obj.tags !== undefined) {

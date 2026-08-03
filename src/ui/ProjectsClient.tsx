@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Paragraph, Heading } from "components/Text";
+import type { CSSProperties } from "react";
+import { Paragraph } from "components/Text";
 import useFilterRow from "components/Filters";
 import { Project } from "helpers/typeDefinitions";
 import { capitalise } from "helpers/tags";
@@ -46,17 +47,23 @@ function ProjectCard({
   description,
   tags = [],
   published,
+  year,
+  role,
+  accent,
   toggleTag,
 }: Project & { toggleTag: (tag: string) => void }): ReactElement {
   const linkHref = "/project/" + id;
   const isDraft = published !== true;
 
   return (
-    <article className="group flex h-full min-h-100 w-full flex-col rounded-xl overflow-hidden hover:shadow-2xl hover:border-accent active:shadow-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-accent bg-background-primary border border-transparent hover:border-accent/30 relative">
-      {/* Decorative gradient overlay on hover */}
-      <div className="absolute inset-0 bg-linear-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-accent/10 transition-all duration-300 pointer-events-none rounded-xl"></div>
-
-      {/* Status badges */}
+    <article
+      className="group relative flex h-full min-h-100 w-full flex-col overflow-hidden rounded-2xl border border-transparent bg-background-primary transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-2xl focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-accent"
+      style={{ "--accent": accent } as CSSProperties}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 z-0 rounded-2xl bg-linear-to-br from-accent/0 via-accent/0 to-accent/0 transition-all duration-300 group-hover:from-accent/5 group-hover:to-accent/10"
+        aria-hidden="true"
+      ></div>
 
       {isDraft && (
         <div className="absolute top-3 right-3 z-20 flex gap-2 flex-wrap justify-end">
@@ -70,34 +77,40 @@ function ProjectCard({
         </div>
       )}
 
-      <Link href={linkHref} className="relative overflow-hidden shrink-0">
-        <div className="CardImage relative h-75 w-full overflow-hidden rounded-t-xl transition-all duration-300 group-hover:scale-110 group-active:scale-105 group-active:brightness-110">
+      <Link href={linkHref} className="relative block shrink-0 overflow-hidden">
+        <div className="CardImage relative h-64 w-full overflow-hidden">
           {image ? (
             <Image
               src={image}
               alt={name}
               fill
               sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              style={{ objectFit: "cover" }}
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
               loading="lazy"
             />
           ) : null}
+          <div
+            className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent"
+            aria-hidden="true"
+          ></div>
+          <div className="absolute bottom-0 left-0 right-0 p-5">
+            <h3 className="text-2xl font-semibold leading-tight text-white drop-shadow-md">
+              {name}
+            </h3>
+          </div>
         </div>
       </Link>
-      <div className="relative w-full flex-1 py-6 px-4 flex flex-col z-10">
-        <Link
-          href={linkHref}
-          className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          <Heading
-            as="h3"
-            className="text-2xl font-semibold hover:text-accent transition-colors group-active:text-accent"
-          >
-            {name}
-          </Heading>
-        </Link>
+
+      <div className="relative z-10 flex w-full flex-1 flex-col p-5 pt-4">
+        {(year || role) && (
+          <p className="mb-2 flex flex-wrap gap-x-4 gap-y-1 text-xs font-medium uppercase tracking-widest text-text-disabled">
+            {year ? <span>{year}</span> : null}
+            {role ? <span className="text-accent">{role}</span> : null}
+          </p>
+        )}
+
         {description ? (
-          <Paragraph className="max-w-full text-base">
+          <Paragraph className="my-2 max-w-full text-base">
             {description}{" "}
             <Link
               href={linkHref}
@@ -108,6 +121,7 @@ function ProjectCard({
             .
           </Paragraph>
         ) : null}
+
         {tags.length > 0 ? (
           <div className="max-w-full text-base mt-auto pt-2 border-t border-accent/10">
             <p className="sr-only">Tags for {name}:</p>
